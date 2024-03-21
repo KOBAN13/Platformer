@@ -1,23 +1,65 @@
-﻿using System;
-using CameraSettings;
+﻿using CameraSettings;
+using Dead;
+using LogerEventCount;
+using UniRx;
+using UnityEngine;
 using Zenject;
+using Logger = LogerEventCount.Logger;
 
 namespace Collider
 {
-    public class CollisionHandler
+    public class CollisionHandler : MonoBehaviour, IUseDispose
     {
-        private MediatorCameraSwitcher _mediatorCameraSwitcher;
+        public CompositeDisposable Disposable { get; } = new();
         
-        public Action<Cameras> TriggerCameraSwitcher;
-        public Action<int> TriggerCurrency;
+        private MediatorCameraSwitcher _mediatorCameraSwitcher;
+        private MediatorCurrency _mediatorCurrency;
+        private MediatorAbyss _mediatorAbyss;
+        private Logger _logger;
+
+        public readonly ReactiveCommand<Cameras> TriggerCameraSwitcher = new();
+        public readonly ReactiveCommand<int> TriggerCurrency = new();
+        public readonly ReactiveCommand<bool> TriggerAbyss = new();
 
         [Inject]
-        public void Construct(MediatorCameraSwitcher mediatorCameraSwitcher) =>
+        public void Construct(MediatorCameraSwitcher mediatorCameraSwitcher, MediatorCurrency mediatorCurrency, MediatorAbyss mediatorAbyss, Logger logger)
+        {
             _mediatorCameraSwitcher = mediatorCameraSwitcher;
-    
-        public void NotifyCameraSwitcher(Cameras cameras) => TriggerCameraSwitcher?.Invoke(cameras);
-        public void NotifyCurrency(int countCurrency) => TriggerCurrency?.Invoke(countCurrency);
+            _mediatorCurrency = mediatorCurrency;
+            _mediatorAbyss = mediatorAbyss;
+            _logger = logger;
+            
+            NotifyCameraSwitcher();
+            NotifyCurrency();
+            NotifyAbyss();
+            
+            _logger.UseDisposes.Add(this);
+        }
 
-        public void HandleCameraSwitcher(Cameras cameras) => _mediatorCameraSwitcher.CameraSwitch(cameras);
+        private void NotifyCameraSwitcher()
+        {
+            TriggerCameraSwitcher
+                .Subscribe(cameraTriggers => _mediatorCameraSwitcher.CameraSwitch(cameraTriggers))
+                .AddTo(Disposable);
+        }
+        
+        private void NotifyCurrency()
+        {
+            TriggerCurrency
+                .Subscribe(currencyCount => _mediatorCurrency.SetCurrency(currencyCount))
+                .AddTo(Disposable);
+        }
+
+        private void NotifyAbyss()
+        {
+            TriggerAbyss
+                .Subscribe(_ => _mediatorAbyss.SetCurrency(_))
+                .AddTo(Disposable);
+        }
+        
+        public void OnDisable()
+        {
+            Disposable.Clear();
+        }
     }
 }

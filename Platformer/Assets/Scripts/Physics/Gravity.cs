@@ -24,7 +24,6 @@ namespace Character.Physics
 
         public void Tick()
         {
-            Debug.Log(_gravityForce);
             GravityHandling();
         }
         

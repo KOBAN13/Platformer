@@ -3,6 +3,7 @@ using Character.Loader;
 using Character.Physics;
 using CharacterScripts.Bootstrap;
 using Collider;
+using Dead;
 using DefaultNamespace;
 using DefaultNamespace.Jump;
 using DefaultNamespace.Movement;
@@ -24,6 +25,9 @@ namespace Installers
         [field: SerializeField] public NameLoaderResources NameLoaderResources { get; private set; }
         [field: SerializeField] public CameraSwitcher CameraSwitcher { get; private set; }
         [field: SerializeField] public BootstrapBaseMovement BootstrapBaseMovement { get; private set; }
+        [field: SerializeField] public LogerEventCount.Logger Logger { get; private set; }
+        [field: SerializeField] public CollisionHandler CollisionHandler { get; private set; }
+        [field: SerializeField] public RestartGame RestartGame { get; private set; }
         public override void InstallBindings()
         {
             BindPlayer();
@@ -35,6 +39,26 @@ namespace Installers
             BindBootstrup();
             BindCameraBlend();
             BindTimeManager();
+            BindMediator();
+            BindLogger();
+            BindRestartGame();
+        }
+
+        private void BindRestartGame()
+        {
+            Container.BindInterfacesAndSelfTo<RestartGame>().FromInstance(RestartGame).AsSingle().NonLazy();
+        }
+
+        private void BindLogger()
+        {
+            Container.Bind<LogerEventCount.Logger>().FromInstance(Logger).AsSingle().NonLazy();
+        }
+
+        private void BindMediator()
+        {
+            Container.Bind<MediatorCameraSwitcher>().AsSingle().NonLazy();
+            Container.Bind<MediatorCurrency>().AsSingle().NonLazy();
+            Container.Bind<MediatorAbyss>().AsSingle().NonLazy();
         }
 
         private void BindTimeManager()
@@ -45,8 +69,7 @@ namespace Installers
         private void BindCameraBlend()
         {
             Container.Bind<CameraSwitcher>().FromInstance(CameraSwitcher).AsSingle().NonLazy();
-            Container.Bind<MediatorCameraSwitcher>().AsSingle().NonLazy();
-            Container.Bind<CollisionHandler>().AsSingle().NonLazy();
+            Container.Bind<CollisionHandler>().FromInstance(CollisionHandler).AsSingle().NonLazy();
         }
 
         private void BindLoader()

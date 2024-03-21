@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <JumpTime>k__BackingField: 1.5
   <JumpHeight>k__BackingField: 2
+  <CoyoteTime>k__BackingField: 0.3
+  <JumpBuffering>k__BackingField: 0.3

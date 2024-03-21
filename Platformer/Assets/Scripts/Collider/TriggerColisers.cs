@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using LogerEventCount;
+using UniRx;
 using UnityEngine;
 
 namespace Collider
@@ -7,7 +8,6 @@ namespace Collider
     {
         protected CollisionHandler CollisionHandler;
         protected UnityEngine.Collider Collider;
-        protected CompositeDisposable CompositeDisposableTrigger = new();
 
         protected abstract void TriggerEnter();
     }

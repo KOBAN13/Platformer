@@ -7,6 +7,8 @@ namespace DefaultNamespace.Configs
     {
         [field: SerializeField] public float JumpTime { get; private set; }
         [field: SerializeField] public float JumpHeight { get; private set; }
+        [field: SerializeField] public float CoyoteTime { get; private set; }
+        [field: SerializeField] public float JumpBuffering { get; private set; }
     }
 }
 
