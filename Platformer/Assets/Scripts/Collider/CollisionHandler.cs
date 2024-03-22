@@ -17,7 +17,7 @@ namespace Collider
         private MediatorAbyss _mediatorAbyss;
         private Logger _logger;
 
-        public readonly ReactiveCommand<Cameras> TriggerCameraSwitcher = new();
+        public readonly ReactiveCommand<ICameraSwitchStrategy> TriggerCameraSwitcher = new();
         public readonly ReactiveCommand<int> TriggerCurrency = new();
         public readonly ReactiveCommand<bool> TriggerAbyss = new();
 
@@ -39,7 +39,7 @@ namespace Collider
         private void NotifyCameraSwitcher()
         {
             TriggerCameraSwitcher
-                .Subscribe(cameraTriggers => _mediatorCameraSwitcher.CameraSwitch(cameraTriggers))
+                .Subscribe(cameraSwitchStrategy => _mediatorCameraSwitcher.CameraSwitch(cameraSwitchStrategy))
                 .AddTo(Disposable);
         }
         

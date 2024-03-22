@@ -1,43 +1,46 @@
 ﻿using System;
+using CameraSettings.Interfaces;
 using InputSystem.InputStrategy;
 using UnityEngine;
 using Zenject;
 
 namespace CameraSettings
 {
-    public class MediatorCameraSwitcher
+    public class MediatorCameraSwitcher : IVisitCameraSwitch, ICurrentStrategy
     {
+        public ICameraSwitchStrategy CurrentStrategy { get; private set; }
+        
         private CameraSwitcher _cameraSwitcher;
         private ISetMovementStrategy _movementStrategy;
-        private InputSwitcher _inputSwitcher;
 
         [Inject]
-        public void Construct(CameraSwitcher cameraSwitcher, ISetMovementStrategy movementStrategy, InputSwitcher inputSwitcher)
+        public void Construct(CameraSwitcher cameraSwitcher, ISetMovementStrategy movementStrategy)
         { 
             _cameraSwitcher = cameraSwitcher;
             _movementStrategy = movementStrategy;
-            _inputSwitcher = inputSwitcher;
         }
         
-        public void CameraSwitch(Cameras camera)
+        public void CameraSwitch(ICameraSwitchStrategy cameraSwitchStrategy)
         {
-            Debug.Log(camera);
+            Debug.Log(cameraSwitchStrategy);
             Debug.Log(_movementStrategy);
-            switch (camera)
-            {
-                case Cameras.Above: _cameraSwitcher.CamSwitcher(_cameraSwitcher.CamAbove);
-                    _movementStrategy.SetMovementStrategy(_inputSwitcher.GetStandardInput());
-                    break;
-                case Cameras.Corner :
-                    _cameraSwitcher.CamSwitcher(_cameraSwitcher.Cam45Corner);
-                    _movementStrategy.SetMovementStrategy(_inputSwitcher.GetStandardInput());
-                    break;
-                case Cameras.Slide : _cameraSwitcher.CamSwitcher(_cameraSwitcher.CamSide);
-                    _movementStrategy.SetMovementStrategy(_inputSwitcher.GetInputSlide());
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(camera), camera, null);
-            }
+            Visit((dynamic)cameraSwitchStrategy);
+            CurrentStrategy = cameraSwitchStrategy;
+        }
+
+        public void Visit(AboveCameraSwitcher aboveCameraSwitcher)
+        {
+            _movementStrategy.SetMovementStrategy(aboveCameraSwitcher.GetInputStrategy(_cameraSwitcher.CamAbove));
+        }
+
+        public void Visit(CornerCameraSwitcher cornerCameraSwitcher)
+        {
+            _movementStrategy.SetMovementStrategy(cornerCameraSwitcher.GetInputStrategy(null));
+        }
+
+        public void Visit(SlideCameraSwitcher slideCameraSwitcher)
+        {
+            _movementStrategy.SetMovementStrategy(slideCameraSwitcher.GetInputStrategy(_cameraSwitcher.CamSide));
         }
     }
 }

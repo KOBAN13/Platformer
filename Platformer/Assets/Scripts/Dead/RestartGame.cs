@@ -61,7 +61,6 @@ namespace Dead
                 _changeColor.ColorText -= PopupTextSpeed * Time.deltaTime;
                 yield return null;
             }
-
             yield return new WaitForSeconds(WaitAfterTextEffect);
             
             SceneManager.LoadScene("Gameplay");

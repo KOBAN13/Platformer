@@ -200,6 +200,54 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""ChangeCamera"",
+            ""id"": ""2fcb8990-ad67-45bc-a36e-7374d28d023e"",
+            ""actions"": [
+                {
+                    ""name"": ""LeftCameras"",
+                    ""type"": ""Button"",
+                    ""id"": ""723a75f6-7fff-439b-96e1-757a186cba39"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightCameras"",
+                    ""type"": ""Button"",
+                    ""id"": ""90e47c00-95e6-4b1b-9736-93aeac34b962"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7b5938c3-0fba-4996-aa85-cfaa3685f252"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftCameras"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef1af4e0-a02b-44f0-966b-21cec7856f53"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightCameras"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -216,6 +264,10 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
         // MoveSide
         m_MoveSide = asset.FindActionMap("MoveSide", throwIfNotFound: true);
         m_MoveSide_Move = m_MoveSide.FindAction("Move", throwIfNotFound: true);
+        // ChangeCamera
+        m_ChangeCamera = asset.FindActionMap("ChangeCamera", throwIfNotFound: true);
+        m_ChangeCamera_LeftCameras = m_ChangeCamera.FindAction("LeftCameras", throwIfNotFound: true);
+        m_ChangeCamera_RightCameras = m_ChangeCamera.FindAction("RightCameras", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,6 +455,47 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
         }
     }
     public MoveSideActions @MoveSide => new MoveSideActions(this);
+
+    // ChangeCamera
+    private readonly InputActionMap m_ChangeCamera;
+    private IChangeCameraActions m_ChangeCameraActionsCallbackInterface;
+    private readonly InputAction m_ChangeCamera_LeftCameras;
+    private readonly InputAction m_ChangeCamera_RightCameras;
+    public struct ChangeCameraActions
+    {
+        private @NewInputSystem m_Wrapper;
+        public ChangeCameraActions(@NewInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LeftCameras => m_Wrapper.m_ChangeCamera_LeftCameras;
+        public InputAction @RightCameras => m_Wrapper.m_ChangeCamera_RightCameras;
+        public InputActionMap Get() { return m_Wrapper.m_ChangeCamera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ChangeCameraActions set) { return set.Get(); }
+        public void SetCallbacks(IChangeCameraActions instance)
+        {
+            if (m_Wrapper.m_ChangeCameraActionsCallbackInterface != null)
+            {
+                @LeftCameras.started -= m_Wrapper.m_ChangeCameraActionsCallbackInterface.OnLeftCameras;
+                @LeftCameras.performed -= m_Wrapper.m_ChangeCameraActionsCallbackInterface.OnLeftCameras;
+                @LeftCameras.canceled -= m_Wrapper.m_ChangeCameraActionsCallbackInterface.OnLeftCameras;
+                @RightCameras.started -= m_Wrapper.m_ChangeCameraActionsCallbackInterface.OnRightCameras;
+                @RightCameras.performed -= m_Wrapper.m_ChangeCameraActionsCallbackInterface.OnRightCameras;
+                @RightCameras.canceled -= m_Wrapper.m_ChangeCameraActionsCallbackInterface.OnRightCameras;
+            }
+            m_Wrapper.m_ChangeCameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @LeftCameras.started += instance.OnLeftCameras;
+                @LeftCameras.performed += instance.OnLeftCameras;
+                @LeftCameras.canceled += instance.OnLeftCameras;
+                @RightCameras.started += instance.OnRightCameras;
+                @RightCameras.performed += instance.OnRightCameras;
+                @RightCameras.canceled += instance.OnRightCameras;
+            }
+        }
+    }
+    public ChangeCameraActions @ChangeCamera => new ChangeCameraActions(this);
     public interface IMoveUpCameraActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -418,5 +511,10 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
     public interface IMoveSideActions
     {
         void OnMove(InputAction.CallbackContext context);
+    }
+    public interface IChangeCameraActions
+    {
+        void OnLeftCameras(InputAction.CallbackContext context);
+        void OnRightCameras(InputAction.CallbackContext context);
     }
 }

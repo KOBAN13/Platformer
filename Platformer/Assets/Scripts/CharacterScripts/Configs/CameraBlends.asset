@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CustomBlends:
   - m_From: CM side
-    m_To: CM up
+    m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 2
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
@@ -24,10 +24,10 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM side
-    m_To: CM 45 degrees
+  - m_From: CM above
+    m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 2
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
@@ -35,10 +35,10 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM up
-    m_To: CM side
+  - m_From: CM  Lower left corner 45
+    m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 2
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
@@ -46,10 +46,10 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM up
-    m_To: CM 45 degrees
+  - m_From: CM Upper left corner 45
+    m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 2
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
@@ -57,10 +57,10 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM 45 degrees
-    m_To: CM up
+  - m_From: CM Upper right corner 45
+    m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 2
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2
@@ -68,10 +68,10 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: CM 45 degrees
-    m_To: CM side
+  - m_From: CM Lower right corner 45
+    m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 2
+      m_Style: 1
       m_Time: 2
       m_CustomCurve:
         serializedVersion: 2

@@ -13,8 +13,13 @@ namespace InputSystem.InputStrategy
             _standardInput = standardInput;
             _inputSlide = inputSlide;
         }
+
+        public IMovementStrategy GetStandardInput(int sign)
+        {
+            _standardInput.SetSignMovement(sign);
+            return _standardInput;
+        }
         
-        public IMovementStrategy GetStandardInput() => _standardInput;
         public IMovementStrategy GetInputSlide() => _inputSlide;
     }
 }

@@ -28,6 +28,7 @@ namespace Installers
         [field: SerializeField] public LogerEventCount.Logger Logger { get; private set; }
         [field: SerializeField] public CollisionHandler CollisionHandler { get; private set; }
         [field: SerializeField] public RestartGame RestartGame { get; private set; }
+        [field: SerializeField] public CamerasInputSystem CamerasInputSystem { get; private set; }
         public override void InstallBindings()
         {
             BindPlayer();
@@ -42,6 +43,14 @@ namespace Installers
             BindMediator();
             BindLogger();
             BindRestartGame();
+            BindCamerasStrategy();
+        }
+
+        private void BindCamerasStrategy()
+        {
+            Container.BindInterfacesAndSelfTo<AboveCameraSwitcher>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<SlideCameraSwitcher>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CornerCameraSwitcher>().AsSingle().NonLazy();
         }
 
         private void BindRestartGame()
@@ -56,7 +65,7 @@ namespace Installers
 
         private void BindMediator()
         {
-            Container.Bind<MediatorCameraSwitcher>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<MediatorCameraSwitcher>().AsSingle().NonLazy();
             Container.Bind<MediatorCurrency>().AsSingle().NonLazy();
             Container.Bind<MediatorAbyss>().AsSingle().NonLazy();
         }
@@ -98,6 +107,7 @@ namespace Installers
             Container.BindInterfacesAndSelfTo<StandardInput>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<InputSlide>().AsSingle().NonLazy();
             Container.Bind<InputSwitcher>().AsSingle().NonLazy();
+            Container.Bind<CamerasInputSystem>().FromInstance(CamerasInputSystem).AsSingle().NonLazy();
         }
 
         private void BindPlayer()

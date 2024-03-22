@@ -8,6 +8,7 @@ namespace InputSystem.InputStrategy
     {
         private ISetMovementStrategy _movementStrategy;
         private InputSwitcher _inputSwitcher;
+        private const int NonInvertedControl = 1;
 
         [Inject]
         public void Construct(ISetMovementStrategy movementStrategy, InputSwitcher inputSwitcher)
@@ -15,7 +16,7 @@ namespace InputSystem.InputStrategy
             _movementStrategy = movementStrategy;
             _inputSwitcher = inputSwitcher;
 
-            _movementStrategy.SetMovementStrategy(_inputSwitcher.GetStandardInput());
+            _movementStrategy.SetMovementStrategy(_inputSwitcher.GetStandardInput(NonInvertedControl));
         }
     }
 }

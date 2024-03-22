@@ -55,7 +55,7 @@ namespace DefaultNamespace.Jump
         {
             var maxHeightTime = _playerSettings.PlayerJump.JumpTime / 2;
             _gravityForce.GravityForce = 2 * _playerSettings.PlayerJump.JumpHeight / Mathf.Pow(maxHeightTime, 2);
-            _jumpVelocity = 2 * _playerSettings.PlayerJump.JumpTime / maxHeightTime;
+            _jumpVelocity = 2 * _playerSettings.PlayerJump.JumpHeight / maxHeightTime;
         }
     }
 }

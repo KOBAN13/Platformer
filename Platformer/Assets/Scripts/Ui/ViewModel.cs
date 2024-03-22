@@ -9,12 +9,12 @@ namespace Ui
     {
         private Model _model;
         private CompositeDisposable _compositeDisposable = new ();
-        
-        public readonly ReactiveProperty<string> Timer = new();
-        public readonly ReactiveProperty<int> Currency = new();
-        public readonly ReactiveProperty<bool> EnableCanvas = new();
-        public readonly ReactiveProperty<float> DarkeningScreen = new();
-        public readonly ReactiveProperty<float> PopupText = new();
+
+        public IReadOnlyReactiveProperty<string> Timer => _model.Timer;
+        public IReadOnlyReactiveProperty<int> Currency => _model.Currency;
+        public IReadOnlyReactiveProperty<bool> EnableCanvas => _model.EnableCanvas;
+        public IReadOnlyReactiveProperty<float> DarkeningScreen => _model.DarkeningScreen;
+        public IReadOnlyReactiveProperty<float> PopupText => _model.PopupText;
 
         [Inject]
         public void Construct(Model model)
@@ -25,25 +25,7 @@ namespace Ui
 
         public void Subscribe()
         {
-            _model.Timer
-                .Subscribe(time => Timer.Value = time)
-                .AddTo(_compositeDisposable);
             
-            _model.Currency
-                .Subscribe(currency => Currency.Value = currency)
-                .AddTo(_compositeDisposable);
-            
-            _model.EnableCanvas
-                .Subscribe(isActive => EnableCanvas.Value = isActive)
-                .AddTo(_compositeDisposable);
-
-            _model.DarkeningScreen
-                .Subscribe(alpha => DarkeningScreen.Value = alpha)
-                .AddTo(_compositeDisposable);
-
-            _model.PopupText
-                .Subscribe(alpha => PopupText.Value = alpha)
-                .AddTo(_compositeDisposable);
         }
 
         public void Dispose()
