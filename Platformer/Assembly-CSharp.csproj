@@ -52,9 +52,11 @@
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\InputSlide.cs" />
      <Compile Include="Assets\Scripts\Ui\ViewModel.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IMovable.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\Interfaces\IRotate.cs" />
      <Compile Include="Assets\Scripts\LogerEventCount\Logger.cs" />
      <Compile Include="Assets\Scripts\CameraStrategy\AboveCameraSwitcher.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Movement\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\CamerasRotate.cs" />
      <Compile Include="Assets\Scripts\Physics\Gravity.cs" />
      <Compile Include="Assets\Scripts\Installers\ProjectInstallers.cs" />
      <Compile Include="Assets\Scripts\Installers\SceneInstallers.cs" />
@@ -63,6 +65,8 @@
      <Compile Include="Assets\Scripts\Loader\NameLoaderResources.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\ISetMovementStrategy.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\PlayerComponents.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\Interfaces\ICamerasCorner.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\Interfaces\ICamerasSlide.cs" />
      <Compile Include="Assets\Scripts\CameraStrategy\SlideCameraSwitcher.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IJumpable.cs" />
      <Compile Include="Assets\Scripts\CameraStrategy\CornerCameraSwitcher.cs" />
@@ -79,11 +83,13 @@
      <Compile Include="Assets\Scripts\Currency\ICurrency.cs" />
      <Compile Include="Assets\Scripts\Dead\RestartGame.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\IEnableCanvas.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\MediatorCamerasSlideSwitcher.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\IChangeColor.cs" />
      <Compile Include="Assets\Scripts\Collider\TriggerColisers.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\IMovementStrategy.cs" />
      <Compile Include="Assets\Scripts\Currency\MediatorCurrency.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\BootstrapBaseMovement.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\TriggerSlideCameras.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\StandardInput.cs" />
      <Compile Include="Assets\Scripts\Loader\AddressableLoader.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Cameras.cs" />

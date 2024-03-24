@@ -1,11 +1,12 @@
 ﻿using System;
+using CameraSettings.Interfaces;
 using Cinemachine;
 using InputSystem.InputStrategy;
 using Zenject;
 
 namespace CameraSettings
 {
-    public class CornerCameraSwitcher : ICameraSwitchStrategy
+    public class CornerCameraSwitcher : ICameraSwitchStrategy, ICamerasCorner
     {
         private InputSwitcher _inputSwitcher;
         private CameraSwitcher _cameraSwitcher;
@@ -29,9 +30,9 @@ namespace CameraSettings
                 CamerasCorner.LowerLeftCorner => SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.LowerLeftCorner, NonInvertedControl),
                 CamerasCorner.LowerRightCorner =>
                     SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.LowerRightCorner, NonInvertedControl),
-                CamerasCorner.UpperLeftCorner => SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.UpperLeftCorner, InvertedControl),
+                CamerasCorner.UpperLeftCorner => SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.UpperLeftCorner, NonInvertedControl),
                 CamerasCorner.UpperRightCorner =>
-                    SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.UpperRightCorner, InvertedControl),
+                    SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.UpperRightCorner, NonInvertedControl),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

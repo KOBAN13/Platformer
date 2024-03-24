@@ -15,23 +15,29 @@ namespace Collider
         private MediatorCameraSwitcher _mediatorCameraSwitcher;
         private MediatorCurrency _mediatorCurrency;
         private MediatorAbyss _mediatorAbyss;
+        private MediatorCamerasSlideSwitcher _mediatorCamerasSlide;
         private Logger _logger;
 
         public readonly ReactiveCommand<ICameraSwitchStrategy> TriggerCameraSwitcher = new();
         public readonly ReactiveCommand<int> TriggerCurrency = new();
         public readonly ReactiveCommand<bool> TriggerAbyss = new();
+        public readonly ReactiveCommand<CamerasSide> TriggerCamerasSide = new();
 
         [Inject]
-        public void Construct(MediatorCameraSwitcher mediatorCameraSwitcher, MediatorCurrency mediatorCurrency, MediatorAbyss mediatorAbyss, Logger logger)
+        public void Construct(MediatorCameraSwitcher mediatorCameraSwitcher, MediatorCurrency mediatorCurrency, 
+            MediatorAbyss mediatorAbyss, MediatorCamerasSlideSwitcher mediatorCamerasSlideSwitcher,
+            Logger logger)
         {
             _mediatorCameraSwitcher = mediatorCameraSwitcher;
             _mediatorCurrency = mediatorCurrency;
             _mediatorAbyss = mediatorAbyss;
+            _mediatorCamerasSlide = mediatorCamerasSlideSwitcher;
             _logger = logger;
             
             NotifyCameraSwitcher();
             NotifyCurrency();
             NotifyAbyss();
+            NotifyCamerasSlideSwitch();
             
             _logger.UseDisposes.Add(this);
         }
@@ -54,6 +60,13 @@ namespace Collider
         {
             TriggerAbyss
                 .Subscribe(_ => _mediatorAbyss.SetCurrency(_))
+                .AddTo(Disposable);
+        }
+        
+        private void NotifyCamerasSlideSwitch()
+        {
+            TriggerCamerasSide
+                .Subscribe(camerasSide => _mediatorCamerasSlide.SwitchCamerasSlide(camerasSide))
                 .AddTo(Disposable);
         }
         

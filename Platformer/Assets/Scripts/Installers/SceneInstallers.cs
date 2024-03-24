@@ -29,6 +29,7 @@ namespace Installers
         [field: SerializeField] public CollisionHandler CollisionHandler { get; private set; }
         [field: SerializeField] public RestartGame RestartGame { get; private set; }
         [field: SerializeField] public CamerasInputSystem CamerasInputSystem { get; private set; }
+        [field: SerializeField] public CamerasRotate CamerasRotate { get; private set; }
         public override void InstallBindings()
         {
             BindPlayer();
@@ -44,6 +45,12 @@ namespace Installers
             BindLogger();
             BindRestartGame();
             BindCamerasStrategy();
+            BindCamerasRotate();
+        }
+
+        private void BindCamerasRotate()
+        {
+            Container.BindInterfacesAndSelfTo<CamerasRotate>().FromInstance(CamerasRotate).AsSingle().NonLazy();
         }
 
         private void BindCamerasStrategy()
@@ -68,6 +75,7 @@ namespace Installers
             Container.BindInterfacesAndSelfTo<MediatorCameraSwitcher>().AsSingle().NonLazy();
             Container.Bind<MediatorCurrency>().AsSingle().NonLazy();
             Container.Bind<MediatorAbyss>().AsSingle().NonLazy();
+            Container.Bind<MediatorCamerasSlideSwitcher>().AsSingle().NonLazy();
         }
 
         private void BindTimeManager()

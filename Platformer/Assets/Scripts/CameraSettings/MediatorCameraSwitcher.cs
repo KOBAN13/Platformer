@@ -1,5 +1,4 @@
-﻿using System;
-using CameraSettings.Interfaces;
+﻿using CameraSettings.Interfaces;
 using InputSystem.InputStrategy;
 using UnityEngine;
 using Zenject;
@@ -40,7 +39,7 @@ namespace CameraSettings
 
         public void Visit(SlideCameraSwitcher slideCameraSwitcher)
         {
-            _movementStrategy.SetMovementStrategy(slideCameraSwitcher.GetInputStrategy(_cameraSwitcher.CamSide));
+            _movementStrategy.SetMovementStrategy(slideCameraSwitcher.GetInputStrategy(null));
         }
     }
 }

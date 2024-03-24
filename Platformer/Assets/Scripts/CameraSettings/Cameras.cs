@@ -18,4 +18,13 @@ namespace CameraSettings
         UpperRightCorner = 3,
         LowerRightCorner = 4
     }
+
+    [Serializable]
+    public enum CamerasSide
+    {
+        Left,
+        Right,
+        GetUp,
+        AtTheFront
+    }
 }

@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class CameraSwitcher : MonoBehaviour
 {
-    [field: SerializeField] public CinemachineVirtualCamera Cam45Corner { get; private set; }
+    [field: Header("Corner Cameras")]
     [field: SerializeField] public CinemachineVirtualCamera LowerRightCorner { get; private set; }
     [field: SerializeField] public CinemachineVirtualCamera UpperRightCorner { get; private set; }
     [field: SerializeField] public CinemachineVirtualCamera UpperLeftCorner { get; private set; }
     [field: SerializeField] public CinemachineVirtualCamera LowerLeftCorner { get; private set; }
     
+    [field: Header("Cameras Side")]
+    [field: SerializeField] public CinemachineVirtualCamera SideLeft { get; private set; }
+    [field: SerializeField] public CinemachineVirtualCamera SideRight { get; private set; }
+    [field: SerializeField] public CinemachineVirtualCamera SideGetUp { get; private set; }
+    [field: SerializeField] public CinemachineVirtualCamera SideAtTheFront { get; private set; }
     
+    [field: Header("Cameras Above")]
     [field: SerializeField] public CinemachineVirtualCamera CamAbove { get; private set; }
-    [field: SerializeField] public CinemachineVirtualCamera CamSide { get; private set; }
 
     private List<CinemachineVirtualCamera> _listCams;
     private List<CinemachineVirtualCamera> _listCamsMouseClick;
@@ -25,7 +30,7 @@ public class CameraSwitcher : MonoBehaviour
     {
         _listCams = new List<CinemachineVirtualCamera>
         {
-             CamAbove, CamSide, Cam45Corner, LowerRightCorner, UpperRightCorner, UpperLeftCorner, LowerLeftCorner
+             CamAbove, SideRight, SideLeft, SideGetUp, SideAtTheFront, LowerRightCorner, UpperRightCorner, UpperLeftCorner, LowerLeftCorner
         };
 
         ReadOnlyListCams = new List<CinemachineVirtualCamera>(_listCams);

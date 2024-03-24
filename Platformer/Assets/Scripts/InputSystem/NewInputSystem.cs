@@ -52,7 +52,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""936c4f9c-5c55-4c5f-83e6-1098167bf539"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -63,7 +63,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""3e4e9d1d-d642-40de-94f9-2bc52d87ca52"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -74,7 +74,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""cc28ef15-df2c-4593-b957-0ad60c9c0119"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -85,7 +85,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""6a2f68dc-8d8f-4ead-aa54-68535d1715eb"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -248,6 +248,34 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MouseDelta"",
+            ""id"": ""667bca45-d9b8-4428-baef-255449aa1109"",
+            ""actions"": [
+                {
+                    ""name"": ""Delta"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""598fad37-e7ad-401c-927c-ee5d59ae0873"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""76f844ba-2b8b-4aae-9829-38c8365393d2"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -268,6 +296,9 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
         m_ChangeCamera = asset.FindActionMap("ChangeCamera", throwIfNotFound: true);
         m_ChangeCamera_LeftCameras = m_ChangeCamera.FindAction("LeftCameras", throwIfNotFound: true);
         m_ChangeCamera_RightCameras = m_ChangeCamera.FindAction("RightCameras", throwIfNotFound: true);
+        // MouseDelta
+        m_MouseDelta = asset.FindActionMap("MouseDelta", throwIfNotFound: true);
+        m_MouseDelta_Delta = m_MouseDelta.FindAction("Delta", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -496,6 +527,39 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
         }
     }
     public ChangeCameraActions @ChangeCamera => new ChangeCameraActions(this);
+
+    // MouseDelta
+    private readonly InputActionMap m_MouseDelta;
+    private IMouseDeltaActions m_MouseDeltaActionsCallbackInterface;
+    private readonly InputAction m_MouseDelta_Delta;
+    public struct MouseDeltaActions
+    {
+        private @NewInputSystem m_Wrapper;
+        public MouseDeltaActions(@NewInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Delta => m_Wrapper.m_MouseDelta_Delta;
+        public InputActionMap Get() { return m_Wrapper.m_MouseDelta; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MouseDeltaActions set) { return set.Get(); }
+        public void SetCallbacks(IMouseDeltaActions instance)
+        {
+            if (m_Wrapper.m_MouseDeltaActionsCallbackInterface != null)
+            {
+                @Delta.started -= m_Wrapper.m_MouseDeltaActionsCallbackInterface.OnDelta;
+                @Delta.performed -= m_Wrapper.m_MouseDeltaActionsCallbackInterface.OnDelta;
+                @Delta.canceled -= m_Wrapper.m_MouseDeltaActionsCallbackInterface.OnDelta;
+            }
+            m_Wrapper.m_MouseDeltaActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Delta.started += instance.OnDelta;
+                @Delta.performed += instance.OnDelta;
+                @Delta.canceled += instance.OnDelta;
+            }
+        }
+    }
+    public MouseDeltaActions @MouseDelta => new MouseDeltaActions(this);
     public interface IMoveUpCameraActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -516,5 +580,9 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
     {
         void OnLeftCameras(InputAction.CallbackContext context);
         void OnRightCameras(InputAction.CallbackContext context);
+    }
+    public interface IMouseDeltaActions
+    {
+        void OnDelta(InputAction.CallbackContext context);
     }
 }
