@@ -23,11 +23,6 @@ namespace Dead
             TriggerEnter();
             _logger.UseDisposes.Add(this);
         }
-        
-        private void OnDisable()
-        {
-            Disposable.Clear();
-        }
 
         protected override void TriggerEnter()
         {

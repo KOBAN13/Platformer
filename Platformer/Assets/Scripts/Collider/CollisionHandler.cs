@@ -1,5 +1,6 @@
 ﻿using CameraSettings;
 using Dead;
+using Levels;
 using LogerEventCount;
 using UniRx;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Collider
 {
     public class CollisionHandler : MonoBehaviour, IUseDispose
     {
+        [field: SerializeField] public Level Level { get; private set; }
         public CompositeDisposable Disposable { get; } = new();
         
         private MediatorCameraSwitcher _mediatorCameraSwitcher;
@@ -22,6 +24,7 @@ namespace Collider
         public readonly ReactiveCommand<int> TriggerCurrency = new();
         public readonly ReactiveCommand<bool> TriggerAbyss = new();
         public readonly ReactiveCommand<CamerasSide> TriggerCamerasSide = new();
+        public readonly ReactiveCommand<int> TriggerNextLevel = new();
 
         [Inject]
         public void Construct(MediatorCameraSwitcher mediatorCameraSwitcher, MediatorCurrency mediatorCurrency, 
@@ -38,8 +41,16 @@ namespace Collider
             NotifyCurrency();
             NotifyAbyss();
             NotifyCamerasSlideSwitch();
+            NotifyChangeLevel();
             
             _logger.UseDisposes.Add(this);
+        }
+
+        private void NotifyChangeLevel()
+        {
+            TriggerNextLevel
+                .Subscribe(level => Level.SetTransformNext(level))
+                .AddTo(Disposable);
         }
 
         private void NotifyCameraSwitcher()
@@ -68,11 +79,6 @@ namespace Collider
             TriggerCamerasSide
                 .Subscribe(camerasSide => _mediatorCamerasSlide.SwitchCamerasSlide(camerasSide))
                 .AddTo(Disposable);
-        }
-        
-        public void OnDisable()
-        {
-            Disposable.Clear();
         }
     }
 }

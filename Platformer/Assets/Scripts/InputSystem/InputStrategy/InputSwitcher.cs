@@ -19,7 +19,11 @@ namespace InputSystem.InputStrategy
             _standardInput.SetSignMovement(sign);
             return _standardInput;
         }
-        
-        public IMovementStrategy GetInputSlide() => _inputSlide;
+
+        public IMovementStrategy GetInputSlide(int sign)
+        {
+            _inputSlide.SetSignMovement(sign);
+            return _inputSlide;
+        }
     }
 }

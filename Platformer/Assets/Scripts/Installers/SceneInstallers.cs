@@ -30,6 +30,8 @@ namespace Installers
         [field: SerializeField] public RestartGame RestartGame { get; private set; }
         [field: SerializeField] public CamerasInputSystem CamerasInputSystem { get; private set; }
         [field: SerializeField] public CamerasRotate CamerasRotate { get; private set; }
+        [field: SerializeField] public DarkeningScreen DarkeningScreen { get; private set; }
+        [field: SerializeField] public StartGame.StartGame StartGame { get; private set; }
         public override void InstallBindings()
         {
             BindPlayer();
@@ -46,8 +48,20 @@ namespace Installers
             BindRestartGame();
             BindCamerasStrategy();
             BindCamerasRotate();
+            BindDarkeningScreen();
+            BindSkipStart();
         }
 
+        private void BindSkipStart()
+        {
+            Container.BindInterfacesAndSelfTo<StartGame.StartGame>().FromInstance(StartGame).AsSingle().NonLazy();
+        }
+
+        private void BindDarkeningScreen()
+        {
+            Container.BindInterfacesAndSelfTo<DarkeningScreen>().FromInstance(DarkeningScreen).AsSingle().NonLazy();
+        }
+        
         private void BindCamerasRotate()
         {
             Container.BindInterfacesAndSelfTo<CamerasRotate>().FromInstance(CamerasRotate).AsSingle().NonLazy();

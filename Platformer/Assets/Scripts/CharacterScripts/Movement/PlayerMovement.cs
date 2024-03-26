@@ -31,7 +31,6 @@ namespace DefaultNamespace.Movement
 
         public void Tick()
         {
-            Debug.Log(_input);
             if(_playerSettings == null) return;
             _targetDirection.x = _playerSettings.Speed * _input.y;
             _targetDirection.z = _playerSettings.Speed * _input.x;

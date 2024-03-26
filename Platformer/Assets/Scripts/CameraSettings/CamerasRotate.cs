@@ -29,7 +29,7 @@ namespace CameraSettings
             _horizontal += Sensitivity * rotateVector.x;
             var currentEulerAngles = LiveCamera.ActiveVirtualCamera.Follow.localEulerAngles.y + _horizontal;
             
-            currentEulerAngles = Mathf.Clamp(currentEulerAngles, VerticalMinAngle, VerticalMaxAngle);
+            currentEulerAngles = Mathf.Clamp(currentEulerAngles, VerticalMinAngle - 90, VerticalMaxAngle - 90);
 
             var targetRotation = Quaternion.Euler(0, currentEulerAngles, 0f);
 

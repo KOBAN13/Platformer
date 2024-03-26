@@ -32,11 +32,6 @@ namespace Collider
             _logger.UseDisposes.Add(this);
         }
 
-        public void OnDisable()
-        {
-            Disposable.Clear();
-        }
-
         protected override void TriggerEnter()
         {
             Collider

@@ -2,7 +2,6 @@
 using CameraSettings.Interfaces;
 using Cinemachine;
 using InputSystem.InputStrategy;
-using UniRx;
 using Zenject;
 
 namespace CameraSettings
@@ -28,20 +27,20 @@ namespace CameraSettings
         {
             return _camerasSide switch
             {
-                CamerasSide.Left => SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.SideLeft),
+                CamerasSide.Left => SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.SideLeft, NonInvertedControl),
                 CamerasSide.Right =>
-                    SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.SideRight),
-                CamerasSide.GetUp => SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.SideGetUp),
+                    SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.SideRight, InvertedControl),
+                CamerasSide.GetUp => SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.SideGetUp, NonInvertedControl),
                 CamerasSide.AtTheFront =>
-                    SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.SideAtTheFront),
+                    SetCameraSwitcherAndMovementStrategy(_cameraSwitcher.SideAtTheFront, InvertedControl),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        private IMovementStrategy SetCameraSwitcherAndMovementStrategy(CinemachineVirtualCamera camera)
+        private IMovementStrategy SetCameraSwitcherAndMovementStrategy(CinemachineVirtualCamera camera, int sign)
         {
             _cameraSwitcher.CamSwitcher(camera, _cameraSwitcher.ReadOnlyListCams);
-            return _inputSwitcher.GetInputSlide();
+            return _inputSwitcher.GetInputSlide(sign);
         }
     }
 }

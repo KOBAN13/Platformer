@@ -17,21 +17,23 @@ namespace Dead
         [field: SerializeField] public float WaitAfterTextEffect { get; private set; }
 
         public CompositeDisposable Disposable { get; } = new();
-        public ReactiveCommand RestartGameCommand { get; } = new ();
+        public ReactiveCommand RestartGameCommand { get; } = new();
         private Logger _logger;
         private IEnableCanvas _enableCanvas;
-        private IChangeColor _changeColor;
+        private IChangeColorText _changeColor;
+        private IDarkening _darkening;
 
         [Inject]
-        public void Construct(Logger logger, IEnableCanvas enableCanvas, IChangeColor changeColor)
+        public void Construct(Logger logger, IEnableCanvas enableCanvas, IChangeColorText changeColor, IDarkening darkening)
         {
             _logger = logger;
             _enableCanvas = enableCanvas;
             _changeColor = changeColor;
+            _darkening = darkening;
             _logger.UseDisposes.Add(this);
             Subscribe();
         }
-        
+
         private void Subscribe()
         {
             RestartGameCommand
@@ -39,20 +41,16 @@ namespace Dead
                 .AddTo(Disposable);
         }
 
-        private void OnDisable()
-        {
-            Disposable.Clear();
-        }
-
         private IEnumerator Wait()
         {
-            while (_changeColor.Darkening < 1f)
+            _darkening.Darkening = 0f;
+            while (_darkening.Darkening < 1f)
             {
-                _changeColor.Darkening += DarkeningSpeedScreen * Time.deltaTime;
+                _darkening.Darkening += DarkeningSpeedScreen * Time.deltaTime;
 
-                if (_changeColor.Darkening > 0.2f)
+                if (_darkening.Darkening > 0.2f)
                     _changeColor.ColorText += PopupTextSpeed * Time.deltaTime;
-                
+
                 yield return null;
             }
 
@@ -61,11 +59,13 @@ namespace Dead
                 _changeColor.ColorText -= PopupTextSpeed * Time.deltaTime;
                 yield return null;
             }
+
             yield return new WaitForSeconds(WaitAfterTextEffect);
-            
-            SceneManager.LoadScene("Gameplay");
+
+            SceneManager.LoadScene("Gameplay1");
             _enableCanvas.IsActiveCanvas = false;
-            _changeColor.Darkening = 0f;
+            _darkening.Darkening = 0f;
+
         }
     }
 }

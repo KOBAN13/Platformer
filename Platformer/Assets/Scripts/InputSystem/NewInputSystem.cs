@@ -52,7 +52,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""936c4f9c-5c55-4c5f-83e6-1098167bf539"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -63,7 +63,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""3e4e9d1d-d642-40de-94f9-2bc52d87ca52"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -74,7 +74,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""cc28ef15-df2c-4593-b957-0ad60c9c0119"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -85,7 +85,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""6a2f68dc-8d8f-4ead-aa54-68535d1715eb"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -276,6 +276,34 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""SkipStartGame"",
+            ""id"": ""3a25c0e3-8965-44b9-8c0c-b9ad1ea26ca8"",
+            ""actions"": [
+                {
+                    ""name"": ""Skip"",
+                    ""type"": ""Button"",
+                    ""id"": ""93e67a38-11bb-49b6-9684-beb2d9e551a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""daca71dc-a707-4e2e-b2ec-d273e8e8fe28"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -299,6 +327,9 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
         // MouseDelta
         m_MouseDelta = asset.FindActionMap("MouseDelta", throwIfNotFound: true);
         m_MouseDelta_Delta = m_MouseDelta.FindAction("Delta", throwIfNotFound: true);
+        // SkipStartGame
+        m_SkipStartGame = asset.FindActionMap("SkipStartGame", throwIfNotFound: true);
+        m_SkipStartGame_Skip = m_SkipStartGame.FindAction("Skip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -560,6 +591,39 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
         }
     }
     public MouseDeltaActions @MouseDelta => new MouseDeltaActions(this);
+
+    // SkipStartGame
+    private readonly InputActionMap m_SkipStartGame;
+    private ISkipStartGameActions m_SkipStartGameActionsCallbackInterface;
+    private readonly InputAction m_SkipStartGame_Skip;
+    public struct SkipStartGameActions
+    {
+        private @NewInputSystem m_Wrapper;
+        public SkipStartGameActions(@NewInputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Skip => m_Wrapper.m_SkipStartGame_Skip;
+        public InputActionMap Get() { return m_Wrapper.m_SkipStartGame; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(SkipStartGameActions set) { return set.Get(); }
+        public void SetCallbacks(ISkipStartGameActions instance)
+        {
+            if (m_Wrapper.m_SkipStartGameActionsCallbackInterface != null)
+            {
+                @Skip.started -= m_Wrapper.m_SkipStartGameActionsCallbackInterface.OnSkip;
+                @Skip.performed -= m_Wrapper.m_SkipStartGameActionsCallbackInterface.OnSkip;
+                @Skip.canceled -= m_Wrapper.m_SkipStartGameActionsCallbackInterface.OnSkip;
+            }
+            m_Wrapper.m_SkipStartGameActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Skip.started += instance.OnSkip;
+                @Skip.performed += instance.OnSkip;
+                @Skip.canceled += instance.OnSkip;
+            }
+        }
+    }
+    public SkipStartGameActions @SkipStartGame => new SkipStartGameActions(this);
     public interface IMoveUpCameraActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -584,5 +648,9 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
     public interface IMouseDeltaActions
     {
         void OnDelta(InputAction.CallbackContext context);
+    }
+    public interface ISkipStartGameActions
+    {
+        void OnSkip(InputAction.CallbackContext context);
     }
 }

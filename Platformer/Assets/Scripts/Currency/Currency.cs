@@ -45,10 +45,5 @@ namespace Collider
                 .Subscribe(_ => gameObject.SetActive(false))
                 .AddTo(Disposable);
         }
-
-        private void OnDisable()
-        {
-            Disposable.Clear();
-        }
     }
 }

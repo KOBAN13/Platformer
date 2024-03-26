@@ -24,5 +24,11 @@ namespace LogerEventCount
                 })
                 .AddTo(_compositeDisposableLogger);
         }
+
+        public void OnDisable()
+        {
+            _compositeDisposableLogger.Dispose();
+            UseDisposes.ForEach(dis => dis.Disposable.Clear());
+        }
     }
 }
