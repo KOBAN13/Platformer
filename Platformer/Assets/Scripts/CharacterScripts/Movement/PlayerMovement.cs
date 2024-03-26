@@ -32,7 +32,8 @@ namespace DefaultNamespace.Movement
         public void Tick()
         {
             if(_playerSettings == null) return;
-            _targetDirection.x = _playerSettings.Speed * _input.y;
+           // var vectorInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            _targetDirection.x = _playerSettings.Speed * -_input.y;
             _targetDirection.z = _playerSettings.Speed * _input.x;
             _targetDirection.y = _playerComponents.TargetDirectionY;
             _playerComponents.CharacterController.Move(_targetDirection * Time.deltaTime);

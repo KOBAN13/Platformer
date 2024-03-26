@@ -42,13 +42,13 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
-     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
-     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
      <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
-     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
-     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
-     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
      <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
      <None Include="Assets\Plugins\UniRx\ReadMe.txt" />
      <None Include="Assets\Plugins\Demigiant\DOTween\readme.txt" />
      <Reference Include="UnityEngine">
@@ -303,6 +303,9 @@
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
      <HintPath>Z:\Platformer\Platformer\Platformer\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
      </Reference>
+     <Reference Include="DOTween">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
      </Reference>
@@ -317,9 +320,6 @@
      </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
      <HintPath>Z:\Platformer\Platformer\Platformer\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTween">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>Z:\Новая папка\2021.3.8f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -801,6 +801,18 @@
      <Reference Include="Unity.VisualScripting.State">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.ProBuilder">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AddOns.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Zenject-Editor.csproj">
@@ -811,6 +823,10 @@
       <Project>{aa362dc4-712a-a71e-db9d-c332d730510a}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{9561a3a8-d991-2e15-96d3-4fcdcedebe4e}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{666fbda3-836d-c999-6ebd-96118bd2c6db}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -818,10 +834,6 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{5b84b673-1288-62cf-956a-0aa7534e0d82}</Project>
       <Name>Zenject</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{9561a3a8-d991-2e15-96d3-4fcdcedebe4e}</Project>
-      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

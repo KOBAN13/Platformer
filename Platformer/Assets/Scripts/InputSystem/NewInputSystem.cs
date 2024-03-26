@@ -50,19 +50,8 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""left"",
                     ""id"": ""936c4f9c-5c55-4c5f-83e6-1098167bf539"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""3e4e9d1d-d642-40de-94f9-2bc52d87ca52"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -72,9 +61,9 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""cc28ef15-df2c-4593-b957-0ad60c9c0119"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""name"": ""right"",
+                    ""id"": ""3e4e9d1d-d642-40de-94f9-2bc52d87ca52"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -83,9 +72,20 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""6a2f68dc-8d8f-4ead-aa54-68535d1715eb"",
+                    ""name"": ""up"",
+                    ""id"": ""cc28ef15-df2c-4593-b957-0ad60c9c0119"",
                     ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6a2f68dc-8d8f-4ead-aa54-68535d1715eb"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

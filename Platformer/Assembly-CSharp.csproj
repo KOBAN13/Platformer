@@ -51,9 +51,12 @@
      <Compile Include="Assets\Scripts\LogerEventCount\IUseDispose.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\InputSlide.cs" />
      <Compile Include="Assets\Scripts\Ui\ViewModel.cs" />
+     <Compile Include="Assets\Scripts\Pause\ListenerPause.cs" />
+     <Compile Include="Assets\Scripts\Ui\View\ViewStartGame.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IMovable.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\IRotate.cs" />
      <Compile Include="Assets\Scripts\LogerEventCount\Logger.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\IDarkening.cs" />
      <Compile Include="Assets\Scripts\CameraStrategy\AboveCameraSwitcher.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Movement\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\CamerasRotate.cs" />
@@ -67,36 +70,49 @@
      <Compile Include="Assets\Scripts\CharacterScripts\PlayerComponents.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\ICamerasCorner.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\ICamerasSlide.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\IDisplay.cs" />
      <Compile Include="Assets\Scripts\CameraStrategy\SlideCameraSwitcher.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IJumpable.cs" />
      <Compile Include="Assets\Scripts\CameraStrategy\CornerCameraSwitcher.cs" />
+     <Compile Include="Assets\Scripts\Training\TriggerTraining.cs" />
+     <Compile Include="Assets\Scripts\Ui\View\Menu.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\ITime.cs" />
      <Compile Include="Assets\Scripts\InputSystem\CharacterInputController.cs" />
+     <Compile Include="Assets\Scripts\Ui\View\ViewFinishGame.cs" />
      <Compile Include="Assets\Scripts\CameraStrategy\ICameraSwitchStrategy.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\InputSwitcher.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IGravityForce.cs" />
      <Compile Include="Assets\Scripts\Dead\Abyss.cs" />
      <Compile Include="Assets\Scripts\Currency\Currency.cs" />
+     <Compile Include="Assets\Scripts\Levels\Level.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Player.cs" />
      <Compile Include="Assets\Scripts\InputSystem\NewInputSystem.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\MediatorCameraSwitcher.cs" />
      <Compile Include="Assets\Scripts\Currency\ICurrency.cs" />
+     <Compile Include="Assets\Scripts\Levels\ChangeLevel.cs" />
      <Compile Include="Assets\Scripts\Dead\RestartGame.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\IEnableCanvas.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\MediatorCamerasSlideSwitcher.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\IChangeColorText.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\ISkip.cs" />
+     <Compile Include="Assets\Scripts\Ui\DarkeningScreen.cs" />
      <Compile Include="Assets\Scripts\Collider\TriggerColisers.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\IMovementStrategy.cs" />
      <Compile Include="Assets\Scripts\Currency\MediatorCurrency.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\BootstrapBaseMovement.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\TriggerSlideCameras.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\StandardInput.cs" />
+     <Compile Include="Assets\Scripts\StartGame\ISkipStart.cs" />
      <Compile Include="Assets\Scripts\Loader\AddressableLoader.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Cameras.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\ITraining.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\TriggerCamera.cs" />
      <Compile Include="Assets\Scripts\InputSystem\IControllable.cs" />
      <Compile Include="Assets\Scripts\Dead\IRestart.cs" />
      <Compile Include="Assets\Scripts\Ui\View\ViewGameplay.cs" />
+     <Compile Include="Assets\Scripts\StartGame\StartGame.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\IClear.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\IPause.cs" />
      <Compile Include="Assets\Scripts\Ui\TimeManager.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\IVisitCameraSwitch.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IСhangeManagement.cs" />
@@ -104,22 +120,6 @@
      <Compile Include="Assets\Scripts\InputSystem\IUseInputSystem.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputSystemPC.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\ICurrentStrategy.cs" />
-     <Compile Include="Assets\Scripts\Ui\DarkeningScreen.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\IDarkening.cs" />
-     <Compile Include="Assets\Scripts\StartGame\StartGame.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\IDisplay.cs" />
-     <Compile Include="Assets\Scripts\StartGame\ISkipStart.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\ISkip.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\IClear.cs" />
-     <Compile Include="Assets\Scripts\Training\TriggerTraining.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\ITraining.cs" />
-     <Compile Include="Assets\Scripts\Ui\View\ViewStartGame.cs" />
-     <Compile Include="Assets\Scripts\Ui\View\Menu.cs" />
-     <Compile Include="Assets\Scripts\Pause\ListenerPause.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\IPause.cs" />
-     <Compile Include="Assets\Scripts\Levels\ChangeLevel.cs" />
-     <Compile Include="Assets\Scripts\Levels\Level.cs" />
-     <Compile Include="Assets\Scripts\Ui\View\ViewFinishGame.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -394,6 +394,9 @@
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
      <HintPath>Z:\Platformer\Platformer\Platformer\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
      </Reference>
+     <Reference Include="DOTween">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\PackageCache\com.unity.visualscripting@1.7.8\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
      </Reference>
@@ -408,9 +411,6 @@
      </Reference>
      <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
      <HintPath>Z:\Platformer\Platformer\Platformer\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-     </Reference>
-     <Reference Include="DOTween">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
      </Reference>
      <Reference Include="mscorlib">
      <HintPath>Z:\Новая папка\2021.3.8f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\mscorlib.dll</HintPath>
@@ -892,6 +892,18 @@
      <Reference Include="Unity.VisualScripting.State">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.ProBuilder">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AddOns.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
@@ -906,6 +918,10 @@
       <Project>{aa362dc4-712a-a71e-db9d-c332d730510a}</Project>
       <Name>Zenject-PoolMonitor-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{9561a3a8-d991-2e15-96d3-4fcdcedebe4e}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{666fbda3-836d-c999-6ebd-96118bd2c6db}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -913,10 +929,6 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{5b84b673-1288-62cf-956a-0aa7534e0d82}</Project>
       <Name>Zenject</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{9561a3a8-d991-2e15-96d3-4fcdcedebe4e}</Project>
-      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

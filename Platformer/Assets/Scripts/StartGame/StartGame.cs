@@ -9,6 +9,10 @@ namespace StartGame
 {
     public class StartGame : MonoBehaviour, ISkipStart
     {
+        [field: Header("Music")] 
+        [field: SerializeField] public AudioSource Embient { get; private set; }
+        [field: SerializeField] public AudioSource Boy { get; private set; }
+        
         [field: Header("Text For History")]
         [field: SerializeField] public List<string> TextForStartGameHistory { get; private set; }
         
@@ -45,9 +49,12 @@ namespace StartGame
         private IEnumerator AfterSkip()
         {
             _darkeningScreen.OnLightening(TimeNonTextOnScreen);
+            Embient.Play();
             yield return null;
         }
 
+        
+        //нарушение SRP по времени уже не успел нормально сделать
         private IEnumerator PauseBetweenTexts()
         {
             Debug.Log("емный экран начало вывода текста");
@@ -58,10 +65,15 @@ namespace StartGame
                 _display.Text = TextForStartGameHistory[i];
                 Debug.Log("конкретный текст + задержка");
                 yield return new WaitForSeconds(TimeTextOnScreen);
+                
+                if(i is 5 or 8)  //ужасный код сроки 1 час до отдачи игры
+                    Boy.Play();
             }
 
             _darkeningScreen.OnLightening(TimeNonTextOnScreen);
             Debug.Log("Включение экрана");
+
+            Embient.Play();
         }
     }
 }

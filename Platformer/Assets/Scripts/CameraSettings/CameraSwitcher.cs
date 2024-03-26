@@ -48,7 +48,6 @@ public class CameraSwitcher : MonoBehaviour
         var mainCamera = readOnlyList
             .FirstOrDefault(x => x == cam);
         if (mainCamera != null) mainCamera.Priority = 1;
-        
         readOnlyList
             .Where(virtualCamera => virtualCamera != cam)
             .ToList()

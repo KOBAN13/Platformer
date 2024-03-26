@@ -2,6 +2,7 @@
 using CameraSettings.Interfaces;
 using Cinemachine;
 using InputSystem.InputStrategy;
+using UnityEngine;
 using Zenject;
 
 namespace CameraSettings

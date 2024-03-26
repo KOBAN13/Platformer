@@ -15,7 +15,6 @@ namespace Levels
             ReadOnlyPoints = spawnPointPlayer;
         }
 
-
         public void SetTransformNext(int index)
         {
             Player.enabled = false;

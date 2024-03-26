@@ -11,7 +11,7 @@ using Logger = LogerEventCount.Logger;
 
 namespace CameraSettings
 {
-    public class TriggerSlideCameras : MonoBehaviour, IUseDispose
+    public class TriggerSlideCameras : MonoBehaviour
     {
         [field: SerializeField] public CamerasSide CamerasSide { get; private set; }
         public CompositeDisposable Disposable { get; } = new();
@@ -25,17 +25,23 @@ namespace CameraSettings
             _collider = GetComponent<UnityEngine.Collider>();
             _logger = logger;
             _collisionHandler = collisionHandler;
-            _logger.UseDisposes.Add(this);
+            //_logger.UseDisposes.Add(this);
             TriggerEnter();
         }
 
         private void TriggerEnter()
         {
+            Debug.Log($"подписавлся на изменения {CamerasSide} ");
             _collider
                 .OnTriggerEnterAsObservable()
                 .Where(x => x.TryGetComponent<Player>(out var player))
                 .Subscribe(_ => _collisionHandler.TriggerCamerasSide.Execute(CamerasSide))
                 .AddTo(Disposable);
+        }
+
+        public void OnDisable()
+        {
+            Disposable.Clear();
         }
     }
 }
