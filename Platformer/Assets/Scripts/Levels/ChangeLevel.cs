@@ -30,10 +30,13 @@ public class ChangeLevel : TriggerColliders, IUseDispose
         {
             if (Level == CollisionHandler.Level.ReadOnlyPoints.Count)
                 LoadScene();
-            CollisionHandler.TriggerNextLevel.Execute(Level);
+            else
+            {
+                CollisionHandler.TriggerNextLevel.Execute(Level);
+            }
         })
             .AddTo(Disposable);
     }
     
-    private void LoadScene() => SceneManager.LoadScene("Finish");
+    private void LoadScene() => SceneManager.LoadScene("FinishGame");
 }

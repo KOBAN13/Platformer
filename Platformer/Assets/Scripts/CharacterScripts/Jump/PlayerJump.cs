@@ -1,4 +1,5 @@
 ﻿using System;
+using Animation;
 using Character.Loader;
 using UnityEngine;
 using Zenject;
@@ -12,19 +13,20 @@ namespace DefaultNamespace.Jump
         private PlayerSettings _playerSettings;
         private AddressableLoader _addressableLoader;
         private NameLoaderResources _nameLoaderResources;
+        private AnimatorManager _animatorManager;
         private float _jumpVelocity;
         private float _coyoteTimeCounter;
         private float _jumpBufferingCounter;
         
         [Inject]
         public async void Construct(PlayerComponents playerSettings, IGravityForce gravity,
-            NameLoaderResources nameLoaderResources, AddressableLoader addressableLoader)
+            NameLoaderResources nameLoaderResources, AddressableLoader addressableLoader, AnimatorManager animatorManager)
         {
             _playerComponents = playerSettings ? playerSettings : throw new ArgumentNullException();
             _gravityForce = gravity ?? throw new ArgumentNullException();
             _nameLoaderResources = nameLoaderResources;
             _addressableLoader = addressableLoader;
-
+            _animatorManager = animatorManager;
             _playerSettings = await _addressableLoader.Loader<ScriptableObject>(_nameLoaderResources.LoadMovement) as PlayerSettings;
             SetJumpVelocity();
         }

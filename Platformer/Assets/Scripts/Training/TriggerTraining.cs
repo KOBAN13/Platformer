@@ -47,9 +47,9 @@ namespace Training
         
         private IEnumerator StartTutorial()
         {
-            foreach (var text in TextTraining)
+            for (var i = 0; i < TextTraining.Count; i++)
             {
-                _training.TextTrainingOnScreen = text;
+                _training.TextTrainingOnScreen = TextTraining[i];
                 yield return new WaitForSeconds(TimeTextOnScreen);
             }
         }

@@ -72,7 +72,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""down"",
                     ""id"": ""cc28ef15-df2c-4593-b957-0ad60c9c0119"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
@@ -83,7 +83,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
+                    ""name"": ""up"",
                     ""id"": ""6a2f68dc-8d8f-4ead-aa54-68535d1715eb"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",

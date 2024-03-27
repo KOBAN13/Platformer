@@ -20,6 +20,8 @@ namespace StartGame
         [field: SerializeField] public float TimeTextOnScreen { get; private set; }
         [field: SerializeField] public float TimeNonTextOnScreen { get; private set; }
         [field: SerializeField] public float TimeDarkeningBeforeText { get; private set; }
+        
+        [field: SerializeField] public List<GameObject> Wall { get; private set; }
 
         private DarkeningScreen _darkeningScreen;
         private IDisplay _display;
@@ -48,6 +50,7 @@ namespace StartGame
 
         private IEnumerator AfterSkip()
         {
+            Wall.ForEach(x => x.SetActive(false));
             _darkeningScreen.OnLightening(TimeNonTextOnScreen);
             Embient.Play();
             yield return null;
@@ -72,7 +75,7 @@ namespace StartGame
 
             _darkeningScreen.OnLightening(TimeNonTextOnScreen);
             Debug.Log("Включение экрана");
-
+            Wall.ForEach(x => x.SetActive(false));  // как и это все
             Embient.Play();
         }
     }

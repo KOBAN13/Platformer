@@ -1,10 +1,12 @@
-﻿using CameraSettings;
+﻿using Animation;
+using CameraSettings;
 using Character.Loader;
 using Character.Physics;
 using CharacterScripts.Bootstrap;
 using Collider;
 using Dead;
 using DefaultNamespace;
+using DefaultNamespace.Idle;
 using DefaultNamespace.Jump;
 using DefaultNamespace.Movement;
 using InputSystem;
@@ -32,6 +34,7 @@ namespace Installers
         [field: SerializeField] public CamerasRotate CamerasRotate { get; private set; }
         [field: SerializeField] public DarkeningScreen DarkeningScreen { get; private set; }
         [field: SerializeField] public StartGame.StartGame StartGame { get; private set; }
+        [field: SerializeField] public AnimatorManager Animator { get; private set; }
         public override void InstallBindings()
         {
             BindPlayer();
@@ -50,6 +53,18 @@ namespace Installers
             BindCamerasRotate();
             BindDarkeningScreen();
             BindSkipStart();
+            BindAnimator();
+            BindPlayerAnimatorChange();
+        }
+
+        private void BindPlayerAnimatorChange()
+        {
+            Container.BindInterfacesAndSelfTo<PlayerAnimatorChange>().AsSingle().NonLazy();
+        }
+
+        private void BindAnimator()
+        {
+            Container.BindInterfacesAndSelfTo<AnimatorManager>().FromInstance(Animator).AsSingle().NonLazy();
         }
 
         private void BindSkipStart()

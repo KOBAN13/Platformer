@@ -31,7 +31,7 @@ namespace Ui
         public readonly ReactiveProperty<string> TextDisplayOnScreen = new();
         public readonly ReactiveProperty<string> TextSkipGame = new();
         public readonly ReactiveCommand<bool> ClearSubscribeView = new();
-        public readonly ReactiveCommand<string> TextTraining = new();
+        public readonly ReactiveProperty<string> TextTraining = new();
         public readonly ReactiveCommand<bool> IsPause = new();
 
         public bool Pause
@@ -50,7 +50,7 @@ namespace Ui
             set
             {
                 _textTraining = value ?? throw new ArgumentNullException();
-                TextTraining.Execute(_textTraining);
+                TextTraining.Value = _textTraining;
             }
         }
         

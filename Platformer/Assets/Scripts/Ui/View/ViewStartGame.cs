@@ -29,7 +29,7 @@ namespace Ui.View
         {
             Play.onClick.AddListener(() =>
             {
-                _viewModel.LoadScene.Execute(1);
+                _viewModel.LoadSceneStartGame.Execute(1);
             });
         }
         

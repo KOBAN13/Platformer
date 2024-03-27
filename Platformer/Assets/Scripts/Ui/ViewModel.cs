@@ -21,10 +21,12 @@ namespace Ui
         public IReadOnlyReactiveProperty<string> TextDisplayOnScreen => _model.TextDisplayOnScreen;
         public IReadOnlyReactiveProperty<string> TextSkipStartGame => _model.TextSkipGame;
         public ReactiveCommand<bool> ClearSubscribe => _model.ClearSubscribeView;
-        public ReactiveCommand<string> TextTraining => _model.TextTraining;
+        public IReadOnlyReactiveProperty<string> TextTraining => _model.TextTraining;
         public ReactiveCommand<bool> IsPause => _model.IsPause;
 
-        public readonly ReactiveCommand<int> LoadScene = new();
+        public readonly ReactiveCommand<int> LoadSceneStartGame = new();
+        public readonly ReactiveCommand<int> LoadSceneFinishGame = new();
+        public readonly ReactiveCommand<int> LoadSceneInPause = new();
         public readonly ReactiveCommand<string> LoadTelegram = new();
         public readonly ReactiveCommand<Unit> LoadExitGame = new();
 
@@ -38,7 +40,15 @@ namespace Ui
 
         public void Subscribe()
         {
-            LoadScene
+            LoadSceneStartGame
+                .Subscribe(OnLoadScene)
+                .AddTo(_compositeDisposable);
+            
+            LoadSceneInPause
+                .Subscribe(OnLoadScene)
+                .AddTo(_compositeDisposable);
+            
+            LoadSceneFinishGame
                 .Subscribe(OnLoadScene)
                 .AddTo(_compositeDisposable);
 

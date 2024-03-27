@@ -42,84 +42,86 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterScripts\Configs\PlayerSettings.cs" />
-     <Compile Include="Assets\Scripts\InputSystem\IInputSystem.cs" />
-     <Compile Include="Assets\Scripts\Dead\MediatorAbyss.cs" />
-     <Compile Include="Assets\Scripts\InputSystem\CamerasInputSystem.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Jump\PlayerJump.cs" />
-     <Compile Include="Assets\Scripts\Collider\CollisionHandler.cs" />
-     <Compile Include="Assets\Scripts\CharacterScripts\Configs\PlayerJump.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\Idle\PlayerAnimatorChange.cs" />
      <Compile Include="Assets\Scripts\LogerEventCount\IUseDispose.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\InputSlide.cs" />
      <Compile Include="Assets\Scripts\Ui\ViewModel.cs" />
      <Compile Include="Assets\Scripts\Pause\ListenerPause.cs" />
      <Compile Include="Assets\Scripts\Ui\View\ViewStartGame.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IMovable.cs" />
-     <Compile Include="Assets\Scripts\CameraSettings\Interfaces\IRotate.cs" />
-     <Compile Include="Assets\Scripts\LogerEventCount\Logger.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\IDarkening.cs" />
-     <Compile Include="Assets\Scripts\CameraStrategy\AboveCameraSwitcher.cs" />
-     <Compile Include="Assets\Scripts\CharacterScripts\Movement\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\CameraSettings\CamerasRotate.cs" />
-     <Compile Include="Assets\Scripts\Physics\Gravity.cs" />
      <Compile Include="Assets\Scripts\Installers\ProjectInstallers.cs" />
      <Compile Include="Assets\Scripts\Installers\SceneInstallers.cs" />
      <Compile Include="Assets\Scripts\Ui\Model.cs" />
-     <Compile Include="Assets\Scripts\CharacterScripts\Bootstrap\Bootstrap.cs" />
      <Compile Include="Assets\Scripts\Loader\NameLoaderResources.cs" />
-     <Compile Include="Assets\Scripts\InputSystem\InputStrategy\ISetMovementStrategy.cs" />
-     <Compile Include="Assets\Scripts\CharacterScripts\PlayerComponents.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\ICamerasCorner.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\ICamerasSlide.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\IDisplay.cs" />
-     <Compile Include="Assets\Scripts\CameraStrategy\SlideCameraSwitcher.cs" />
-     <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IJumpable.cs" />
-     <Compile Include="Assets\Scripts\CameraStrategy\CornerCameraSwitcher.cs" />
      <Compile Include="Assets\Scripts\Training\TriggerTraining.cs" />
-     <Compile Include="Assets\Scripts\Ui\View\Menu.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\ITime.cs" />
      <Compile Include="Assets\Scripts\InputSystem\CharacterInputController.cs" />
      <Compile Include="Assets\Scripts\Ui\View\ViewFinishGame.cs" />
-     <Compile Include="Assets\Scripts\CameraStrategy\ICameraSwitchStrategy.cs" />
-     <Compile Include="Assets\Scripts\InputSystem\InputStrategy\InputSwitcher.cs" />
-     <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IGravityForce.cs" />
-     <Compile Include="Assets\Scripts\Dead\Abyss.cs" />
      <Compile Include="Assets\Scripts\Currency\Currency.cs" />
      <Compile Include="Assets\Scripts\Levels\Level.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\Player.cs" />
      <Compile Include="Assets\Scripts\InputSystem\NewInputSystem.cs" />
-     <Compile Include="Assets\Scripts\CameraSettings\MediatorCameraSwitcher.cs" />
-     <Compile Include="Assets\Scripts\Currency\ICurrency.cs" />
-     <Compile Include="Assets\Scripts\Levels\ChangeLevel.cs" />
-     <Compile Include="Assets\Scripts\Dead\RestartGame.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\IEnableCanvas.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\MediatorCamerasSlideSwitcher.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\IChangeColorText.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\ISkip.cs" />
      <Compile Include="Assets\Scripts\Ui\DarkeningScreen.cs" />
      <Compile Include="Assets\Scripts\Collider\TriggerColisers.cs" />
-     <Compile Include="Assets\Scripts\InputSystem\InputStrategy\IMovementStrategy.cs" />
-     <Compile Include="Assets\Scripts\Currency\MediatorCurrency.cs" />
-     <Compile Include="Assets\Scripts\InputSystem\InputStrategy\BootstrapBaseMovement.cs" />
-     <Compile Include="Assets\Scripts\CameraSettings\TriggerSlideCameras.cs" />
+     <Compile Include="Assets\Scripts\Animation\AnimatorManager.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputStrategy\StandardInput.cs" />
-     <Compile Include="Assets\Scripts\StartGame\ISkipStart.cs" />
-     <Compile Include="Assets\Scripts\Loader\AddressableLoader.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Cameras.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\ITraining.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\TriggerCamera.cs" />
      <Compile Include="Assets\Scripts\InputSystem\IControllable.cs" />
-     <Compile Include="Assets\Scripts\Dead\IRestart.cs" />
-     <Compile Include="Assets\Scripts\Ui\View\ViewGameplay.cs" />
-     <Compile Include="Assets\Scripts\StartGame\StartGame.cs" />
      <Compile Include="Assets\Scripts\Ui\Interfase\IClear.cs" />
-     <Compile Include="Assets\Scripts\Ui\Interfase\IPause.cs" />
      <Compile Include="Assets\Scripts\Ui\TimeManager.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\IVisitCameraSwitch.cs" />
      <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IСhangeManagement.cs" />
-     <Compile Include="Assets\Scripts\CameraSettings\CameraSwitcher.cs" />
-     <Compile Include="Assets\Scripts\InputSystem\IUseInputSystem.cs" />
      <Compile Include="Assets\Scripts\InputSystem\InputSystemPC.cs" />
      <Compile Include="Assets\Scripts\CameraSettings\Interfaces\ICurrentStrategy.cs" />
+     <Compile Include="Assets\Scripts\InputSystem\IInputSystem.cs" />
+     <Compile Include="Assets\Scripts\Dead\MediatorAbyss.cs" />
+     <Compile Include="Assets\Scripts\InputSystem\CamerasInputSystem.cs" />
+     <Compile Include="Assets\Scripts\Collider\CollisionHandler.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\Configs\PlayerJump.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\Interfaces\IRotate.cs" />
+     <Compile Include="Assets\Scripts\LogerEventCount\Logger.cs" />
+     <Compile Include="Assets\Scripts\CameraStrategy\AboveCameraSwitcher.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\Movement\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\CamerasRotate.cs" />
+     <Compile Include="Assets\Scripts\Physics\Gravity.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\Bootstrap\Bootstrap.cs" />
+     <Compile Include="Assets\Scripts\InputSystem\InputStrategy\ISetMovementStrategy.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\PlayerComponents.cs" />
+     <Compile Include="Assets\Scripts\CameraStrategy\SlideCameraSwitcher.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IJumpable.cs" />
+     <Compile Include="Assets\Scripts\CameraStrategy\CornerCameraSwitcher.cs" />
+     <Compile Include="Assets\Scripts\Ui\View\Menu.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\ITime.cs" />
+     <Compile Include="Assets\Scripts\CameraStrategy\ICameraSwitchStrategy.cs" />
+     <Compile Include="Assets\Scripts\InputSystem\InputStrategy\InputSwitcher.cs" />
+     <Compile Include="Assets\Scripts\CharacterScripts\InterfasesPlayer\IGravityForce.cs" />
+     <Compile Include="Assets\Scripts\Dead\Abyss.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\MediatorCameraSwitcher.cs" />
+     <Compile Include="Assets\Scripts\Currency\ICurrency.cs" />
+     <Compile Include="Assets\Scripts\Levels\ChangeLevel.cs" />
+     <Compile Include="Assets\Scripts\Dead\RestartGame.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\IChangeColorText.cs" />
+     <Compile Include="Assets\Scripts\InputSystem\InputStrategy\IMovementStrategy.cs" />
+     <Compile Include="Assets\Scripts\Currency\MediatorCurrency.cs" />
+     <Compile Include="Assets\Scripts\InputSystem\InputStrategy\BootstrapBaseMovement.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\TriggerSlideCameras.cs" />
+     <Compile Include="Assets\Scripts\StartGame\ISkipStart.cs" />
+     <Compile Include="Assets\Scripts\Loader\AddressableLoader.cs" />
+     <Compile Include="Assets\Scripts\Dead\IRestart.cs" />
+     <Compile Include="Assets\Scripts\Ui\View\ViewGameplay.cs" />
+     <Compile Include="Assets\Scripts\StartGame\StartGame.cs" />
+     <Compile Include="Assets\Scripts\Ui\Interfase\IPause.cs" />
+     <Compile Include="Assets\Scripts\CameraSettings\CameraSwitcher.cs" />
+     <Compile Include="Assets\Scripts\InputSystem\IUseInputSystem.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -140,6 +142,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\AddressableAssetsData\link.xml" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
      <Reference Include="UnityEngine">
@@ -787,9 +790,6 @@
      <Reference Include="System.Xml.XPath.XDocument">
      <HintPath>Z:\Новая папка\2021.3.8f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Xml.XPath.XDocument.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VisualScripting.Flow.Editor">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.VSCode.Editor">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
      </Reference>
@@ -805,20 +805,8 @@
      <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Model">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.VisualStudio.Editor">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.Addressables">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.Timeline">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualScripting.Core.Editor">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.TextMeshPro">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.State.Editor">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
@@ -826,11 +814,11 @@
      <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
      </Reference>
+     <Reference Include="Unity.ProBuilder">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ResourceManager">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
      </Reference>
      <Reference Include="UnityEditor.UI">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -844,29 +832,59 @@
      <Reference Include="UnityEngine.UI">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Services.Core">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualScripting.Flow">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.VisualScripting.Core">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.EditorCoroutines.Editor">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.PlasticSCM.Editor">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
      </Reference>
      <Reference Include="Cinemachine">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Cinemachine.dll</HintPath>
      </Reference>
+     <Reference Include="com.unity.cinemachine.editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Addressables.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualScripting.Flow.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.AddOns.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualStudio.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Timeline">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualScripting.Core.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.TextMeshPro">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ResourceManager">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.ProBuilder.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualScripting.Flow">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.PlasticSCM.Editor">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Services.Core">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.Services.Core.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.VisualScripting.Core">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
+     </Reference>
      <Reference Include="Unity.Services.Core.Analytics">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>
      </Reference>
-     <Reference Include="com.unity.cinemachine.editor">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Shared.Editor">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
@@ -880,9 +898,6 @@
      <Reference Include="Unity.ScriptableBuildPipeline">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
      </Reference>
-     <Reference Include="Unity.Addressables.Editor">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
-     </Reference>
      <Reference Include="Unity.ScriptableBuildPipeline.Editor">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
      </Reference>
@@ -891,18 +906,6 @@
      </Reference>
      <Reference Include="Unity.VisualScripting.State">
      <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder.AddOns.Editor">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.AddOns.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder.Editor">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.Editor.dll</HintPath>
-     </Reference>
-     <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
-     <HintPath>Z:\Platformer\Platformer\Platformer\Library\ScriptAssemblies\Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -914,14 +917,6 @@
       <Project>{71fc2836-1bdc-6f56-ec6c-24174f5e59a2}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{aa362dc4-712a-a71e-db9d-c332d730510a}</Project>
-      <Name>Zenject-PoolMonitor-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{9561a3a8-d991-2e15-96d3-4fcdcedebe4e}</Project>
-      <Name>UniRx</Name>
-    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{666fbda3-836d-c999-6ebd-96118bd2c6db}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -929,6 +924,14 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{5b84b673-1288-62cf-956a-0aa7534e0d82}</Project>
       <Name>Zenject</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{aa362dc4-712a-a71e-db9d-c332d730510a}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{9561a3a8-d991-2e15-96d3-4fcdcedebe4e}</Project>
+      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

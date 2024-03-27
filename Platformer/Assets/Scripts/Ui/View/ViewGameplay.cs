@@ -36,6 +36,7 @@ public class ViewGameplay : Menu
         _viewModel = viewModel;
         StartLogEventCount();
     }
+    
     public void OnEnable()
     {
         Subscribe();
@@ -108,7 +109,7 @@ public class ViewGameplay : Menu
 
         _viewModel.TextTraining
             .Subscribe(text =>
-                AnimateTextFade(text, TextTraining, 5f, HideTextHistory(TextTraining, 5f)))
+                AnimateTextFade(text, TextTraining, 15f, HideTextHistory(TextTraining, 15f)))
             .AddTo(_compositeDisposable);
 
         _viewModel.ClearSubscribe
@@ -131,7 +132,7 @@ public class ViewGameplay : Menu
     
     public void AddListenerButtonLoadMainScene()
     {
-        MainMenu.onClick.AddListener(() => _viewModel.LoadScene.Execute(0));
+        MainMenu.onClick.AddListener(() => _viewModel.LoadSceneInPause.Execute(0));
     }
 
     private Action HideTextHistory(TextMeshProUGUI text, float fadeDuration)
