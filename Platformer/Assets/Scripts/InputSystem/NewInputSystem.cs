@@ -50,7 +50,7 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""up"",
                     ""id"": ""936c4f9c-5c55-4c5f-83e6-1098167bf539"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
@@ -61,8 +61,8 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
-                    ""id"": ""3e4e9d1d-d642-40de-94f9-2bc52d87ca52"",
+                    ""name"": ""down"",
+                    ""id"": ""6a2f68dc-8d8f-4ead-aa54-68535d1715eb"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -72,9 +72,9 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""cc28ef15-df2c-4593-b957-0ad60c9c0119"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""name"": ""left"",
+                    ""id"": ""3e4e9d1d-d642-40de-94f9-2bc52d87ca52"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -83,9 +83,9 @@ public partial class @NewInputSystem : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""6a2f68dc-8d8f-4ead-aa54-68535d1715eb"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""name"": ""right"",
+                    ""id"": ""cc28ef15-df2c-4593-b957-0ad60c9c0119"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

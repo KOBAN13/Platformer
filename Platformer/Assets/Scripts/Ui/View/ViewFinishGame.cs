@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -14,18 +15,24 @@ namespace Ui.View
         [Inject]
         public void Construct(ViewModel viewModel)
         { 
-            _viewModel = viewModel;
-            TimeToFinish.text = $"You completed the game in: {_viewModel.Timer.Value}";
+            ViewModel = viewModel;
+            TimeToFinish.text = $"You completed the game in: {ViewModel.Timer.Value}";
         }
         
         public void AddListenerButtonMainMenu()
         {
-            Restart.onClick.AddListener(() => _viewModel.LoadSceneFinishGame.Execute(0));
+            MainMenu.onClick.AddListener( async () =>
+            {
+                await AnimationButton(MainMenu, () => ViewModel.OnLoadScene(0).Forget());
+            });
         }
 
         public void AddListenerButtonRestart()
         {
-            MainMenu.onClick.AddListener(() => _viewModel.LoadSceneFinishGame.Execute(1));
+            Restart.onClick.AddListener(async () =>
+            {
+                await AnimationButton(Restart, () => ViewModel.OnLoadScene(1).Forget());
+            });
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,7 @@ using Debug = UnityEngine.Debug;
 
 namespace Ui
 {
-    public class ViewModel : IDisposable
+    public class ViewModel
     {
         private Model _model;
         private CompositeDisposable _compositeDisposable = new ();
@@ -18,15 +19,12 @@ namespace Ui
         public IReadOnlyReactiveProperty<bool> EnableCanvas => _model.EnableCanvas;
         public IReadOnlyReactiveProperty<float> DarkeningScreen => _model.DarkeningScreen;
         public IReadOnlyReactiveProperty<float> PopupText => _model.PopupText;
-        public IReadOnlyReactiveProperty<string> TextDisplayOnScreen => _model.TextDisplayOnScreen;
+        public ReactiveCommand<string> TextDisplayOnScreen => _model.TextDisplayOnScreen;
         public IReadOnlyReactiveProperty<string> TextSkipStartGame => _model.TextSkipGame;
-        public ReactiveCommand<bool> ClearSubscribe => _model.ClearSubscribeView;
+        public ReactiveCommand<Action> ClearSubscribe => _model.ClearSubscribeView;
         public IReadOnlyReactiveProperty<string> TextTraining => _model.TextTraining;
         public ReactiveCommand<bool> IsPause => _model.IsPause;
-
-        public readonly ReactiveCommand<int> LoadSceneStartGame = new();
-        public readonly ReactiveCommand<int> LoadSceneFinishGame = new();
-        public readonly ReactiveCommand<int> LoadSceneInPause = new();
+        
         public readonly ReactiveCommand<string> LoadTelegram = new();
         public readonly ReactiveCommand<Unit> LoadExitGame = new();
 
@@ -38,20 +36,8 @@ namespace Ui
             Subscribe();
         }
 
-        public void Subscribe()
+        private void Subscribe()
         {
-            LoadSceneStartGame
-                .Subscribe(OnLoadScene)
-                .AddTo(_compositeDisposable);
-            
-            LoadSceneInPause
-                .Subscribe(OnLoadScene)
-                .AddTo(_compositeDisposable);
-            
-            LoadSceneFinishGame
-                .Subscribe(OnLoadScene)
-                .AddTo(_compositeDisposable);
-
             LoadTelegram
                 .Subscribe(OpenTelegram)
                 .AddTo(_compositeDisposable);
@@ -61,11 +47,6 @@ namespace Ui
                 .AddTo(_compositeDisposable);
         }
 
-        public void Dispose()
-        {
-            _compositeDisposable.Clear();
-        }
-        
         private void StartLogEventCount()
         {
             Observable
@@ -79,7 +60,28 @@ namespace Ui
         }
         
         private void ExitGame(Unit unit) => Application.Quit();
-        private void OnLoadScene(int namedScene) => SceneManager.LoadScene(namedScene);
+
+        public async UniTaskVoid OnLoadScene(int namedScene)
+        {
+            var loadScene = SceneManager.LoadSceneAsync(namedScene, LoadSceneMode.Single);
+            loadScene.allowSceneActivation = false;
+
+            while (!loadScene.isDone)
+            {
+                if (loadScene.progress >= 0.9f)
+                {
+                    loadScene.allowSceneActivation = true;
+                }
+
+                await UniTask.Yield();
+            }
+        }
+        
         private void OpenTelegram(string link) => Process.Start(link);
+
+        ~ViewModel()
+        {
+            _compositeDisposable.Clear();
+        }
     }
 }

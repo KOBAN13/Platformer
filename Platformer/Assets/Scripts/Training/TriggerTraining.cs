@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Collider;
+using Cysharp.Threading.Tasks;
 using DefaultNamespace;
 using LogerEventCount;
 using Ui.Interfase;
@@ -37,20 +38,19 @@ namespace Training
         {
             Collider
                 .OnTriggerEnterAsObservable()
-                .Where(player => player.TryGetComponent<Player>(out var xPlayer))
-                .Subscribe(_ =>
+                .Subscribe( _ =>
                 {
-                    StartCoroutine(StartTutorial());
+                    StartTutorial().Forget();
                 })
                 .AddTo(Disposable);
         }
         
-        private IEnumerator StartTutorial()
+        private async UniTaskVoid StartTutorial()
         {
-            for (var i = 0; i < TextTraining.Count; i++)
+            foreach (var text in TextTraining)
             {
-                _training.TextTrainingOnScreen = TextTraining[i];
-                yield return new WaitForSeconds(TimeTextOnScreen);
+                _training.TextTrainingOnScreen = text;
+                await UniTask.Delay(TimeSpan.FromSeconds(TimeTextOnScreen));
             }
         }
     }

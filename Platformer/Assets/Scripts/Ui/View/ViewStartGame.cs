@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -21,43 +22,58 @@ namespace Ui.View
         [Inject]
         public void Construct(ViewModel viewModel)
         {
-            _viewModel = viewModel;
+            ViewModel = viewModel;
             CanvasAuthors.enabled = false;
         }
         
         public void AddListenerButtonPlay()
         {
-            Play.onClick.AddListener(() =>
+            Play.onClick.AddListener(async () =>
             {
-                _viewModel.LoadSceneStartGame.Execute(1);
+                await AnimationButton(Play, () => ViewModel.OnLoadScene(1).Forget());
             });
         }
         
-        public void AddListenerAuthors()
+        public async void AddListenerAuthors()
         {
-            CanvasStartGame.enabled = false;
-            CanvasAuthors.enabled = true;
+            await AnimationButton(Authors, () =>
+            {
+                CanvasStartGame.enabled = false;
+                CanvasAuthors.enabled = true;
+            });
         }
         
-        public void AddListenerBack()
+        public async void AddListenerBack()
         {
-            CanvasAuthors.enabled = false;
-            CanvasStartGame.enabled = true;
+            await AnimationButton(Back, () =>
+            {
+                CanvasAuthors.enabled = false;
+                CanvasStartGame.enabled = true;
+            });
         }
-        
+
         public void AddListenerButtonDaniil(string text)
         {
-            TelegramDaniil.onClick.AddListener(() => _viewModel.LoadTelegram.Execute(text));
+            TelegramDaniil.onClick.AddListener( async () =>
+            {
+                await AnimationButton(TelegramDaniil, () => ViewModel.LoadTelegram.Execute(text));
+            });
         }
         
         public void AddListenerTelegramDanil(string text)
         {
-            TelegramDanil.onClick.AddListener(() => _viewModel.LoadTelegram.Execute(text));
+            TelegramDanil.onClick.AddListener( async () =>
+            {
+                await AnimationButton(TelegramDanil, () => ViewModel.LoadTelegram.Execute(text));
+            });
         }
         
         public void AddListenerTelegramAndrey(string text)
         {
-            TelegramAndrei.onClick.AddListener(() => _viewModel.LoadTelegram.Execute(text));
+            TelegramAndrei.onClick.AddListener( async () =>
+            {
+                await AnimationButton(TelegramAndrei, () => ViewModel.LoadTelegram.Execute(text));
+            });
         }
     }
 }

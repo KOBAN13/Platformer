@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using Music;
 using Ui;
 using Ui.Interfase;
 using UnityEngine;
@@ -10,16 +14,15 @@ namespace StartGame
     public class StartGame : MonoBehaviour, ISkipStart
     {
         [field: Header("Music")] 
-        [field: SerializeField] public AudioSource Embient { get; private set; }
-        [field: SerializeField] public AudioSource Boy { get; private set; }
-        
+        [field: SerializeField] public AudioController AudioController { get; private set; }
+
         [field: Header("Text For History")]
         [field: SerializeField] public List<string> TextForStartGameHistory { get; private set; }
         
         [field: Header("Settings")]
-        [field: SerializeField] public float TimeTextOnScreen { get; private set; }
+        [field: SerializeField] public int TimeTextOnScreen { get; private set; }
         [field: SerializeField] public float TimeNonTextOnScreen { get; private set; }
-        [field: SerializeField] public float TimeDarkeningBeforeText { get; private set; }
+        [field: SerializeField] public int TimeDarkeningBeforeText { get; private set; }
         
         [field: SerializeField] public List<GameObject> Wall { get; private set; }
 
@@ -27,10 +30,13 @@ namespace StartGame
         private IDisplay _display;
         private ISkip _skip;
         private IClear _clear;
-        
+        private CancellationTokenSource _cancellationToken;
+        private List<string> _text;
+
         [Inject]
         public void Construct(DarkeningScreen darkeningScreen, IDisplay display, ISkip skip, IClear clear)
         {
+            _cancellationToken = new CancellationTokenSource();
             _darkeningScreen = darkeningScreen;
             _display = display;
             _skip = skip;
@@ -38,45 +44,70 @@ namespace StartGame
             _darkeningScreen.InstantlyDarken();
 
             _skip.Skip = "Skip: Enter";
-            StartCoroutine(PauseBetweenTexts());
+            _text = new(TextForStartGameHistory);
+            StartTask();
         }
 
         public void SkipStart()
         {
-            StopCoroutine(PauseBetweenTexts());
-            _clear.ClearSubscribe = true;
-            StartCoroutine(AfterSkip());
+            _clear.ClearSubscribe = StopGame;
+            AfterSkip();
         }
 
-        private IEnumerator AfterSkip()
+        private void StopGame() => _cancellationToken.Cancel();
+
+        private void StartTask()
+        {
+            try
+            {
+                PauseBetweenTexts(_cancellationToken.Token).Forget();
+            }
+            catch (OperationCanceledException)
+            {
+                Debug.Log("Skip text");
+            }
+        }
+
+        private async void AfterSkip()
         {
             Wall.ForEach(x => x.SetActive(false));
             _darkeningScreen.OnLightening(TimeNonTextOnScreen);
-            Embient.Play();
-            yield return null;
+            AudioController.PlayLoop(AudioController.Embient, true);
+            AudioController.PlayMusic(AudioController.Embient);
+            await UniTask.Yield();
         }
 
-        
         //нарушение SRP по времени уже не успел нормально сделать
-        private IEnumerator PauseBetweenTexts()
+        private async UniTaskVoid PauseBetweenTexts(CancellationToken token)
         {
-            Debug.Log("емный экран начало вывода текста");
-            yield return new WaitForSeconds(TimeDarkeningBeforeText);
-            Debug.Log("Вывод текста");
-            for (var i = 0; i < TextForStartGameHistory.Count - 2; i++)
+            await UniTask.Delay(TimeSpan.FromSeconds(TimeDarkeningBeforeText), cancellationToken: token);
+            for (var i = 0; i < _text.Count; i++)
             {
-                _display.Text = TextForStartGameHistory[i];
-                Debug.Log("конкретный текст + задержка");
-                yield return new WaitForSeconds(TimeTextOnScreen);
-                
-                if(i is 5 or 8)  //ужасный код сроки 1 час до отдачи игры
-                    Boy.Play();
+                token.ThrowIfCancellationRequested();
+
+                _display.Text = _text[i];
+                await UniTask.Delay(TimeSpan.FromSeconds(TimeTextOnScreen) , cancellationToken: token);
+                AudioController.PlayLoop(AudioController.Boy, false);
+                AudioController.PlayMusic(AudioController.Spirit);
+
+                if (i is not (5 or 8)) continue;
+                AudioController.PlayLoop(AudioController.Boy, false);
+                AudioController.PlayMusic(AudioController.Boy);
             }
 
             _darkeningScreen.OnLightening(TimeNonTextOnScreen);
-            Debug.Log("Включение экрана");
-            Wall.ForEach(x => x.SetActive(false));  // как и это все
-            Embient.Play();
+            
+            Wall
+                .ForEach(x => x.SetActive(false));  // как и это все
+            
+            AudioController.PlayLoop(AudioController.Embient, true);
+            AudioController.PlayMusic(AudioController.Embient);
+        }
+
+        private void OnDisable()
+        {
+            _cancellationToken.Cancel();
+            _cancellationToken.Dispose();
         }
     }
 }

@@ -149,7 +149,7 @@ namespace Installers
 
         private void BindPlayer()
         {
-            Container.BindInterfacesTo<Player>().FromInstance(Player).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<Player>().FromInstance(Player).AsSingle().NonLazy();
         }
 
         private void BindPlayerParameters()
@@ -159,7 +159,7 @@ namespace Installers
 
         private void BindGravity()
         {
-            Container.BindInterfacesTo<Gravity>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<Gravity>().AsSingle().NonLazy();
         }
     }
 }

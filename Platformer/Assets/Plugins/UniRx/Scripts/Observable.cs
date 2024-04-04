@@ -91,11 +91,6 @@ namespace UniRx
             return new SelectManyObservable<T, TR>(source, selector);
         }
 
-        public static IObservable<TResult> SelectMany<TSource, TResult>(this IObservable<TSource> source, Func<TSource, int, IObservable<TResult>> selector)
-        {
-            return new SelectManyObservable<TSource, TResult>(source, selector);
-        }
-
         public static IObservable<TR> SelectMany<T, TC, TR>(this IObservable<T> source, Func<T, IObservable<TC>> collectionSelector, Func<T, TC, TR> resultSelector)
         {
             return new SelectManyObservable<T, TC, TR>(source, collectionSelector, resultSelector);

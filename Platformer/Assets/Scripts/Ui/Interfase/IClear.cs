@@ -1,7 +1,9 @@
-﻿namespace Ui.Interfase
+﻿using System;
+
+namespace Ui.Interfase
 {
     public interface IClear
     {
-        bool ClearSubscribe { get; set; }
+        Action ClearSubscribe { get; set; }
     }
 }

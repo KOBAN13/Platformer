@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Move
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 10
+  <RotateSpeed>k__BackingField: 300
   <PlayerJump>k__BackingField: {fileID: 11400000, guid: 29ed3a0262294424e8bf0083b695accc, type: 2}

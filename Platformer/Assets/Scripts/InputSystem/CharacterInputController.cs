@@ -8,7 +8,7 @@ namespace InputSystem
     public class CharacterInputController : MonoBehaviour, IUseInputSystem
     {
         private IControllable _controllable;
-        private IInputSystem _input;
+        private IInputSystem _input; 
         public event Action OnJumpCharacter;
         public event Action OnMoveCharacter;
 

@@ -634,10 +634,6 @@ namespace UniRx
         /// <summary>
         /// Note: publishEveryYield is always false. If you want to set true, use Observable.FromCoroutine(() => selector(x), true). This is workaround of Unity compiler's bug.
         /// </summary>
-        public static IObservable<Unit> SelectMany<T>(this IObservable<T> source, Func<T, IEnumerator> selector)
-        {
-            return source.SelectMany(x => FromCoroutine(() => selector(x), false));
-        }
 
         public static IObservable<Unit> ToObservable(this IEnumerator coroutine, bool publishEveryYield = false)
         {

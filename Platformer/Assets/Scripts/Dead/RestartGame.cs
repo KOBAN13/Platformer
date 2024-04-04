@@ -65,7 +65,6 @@ namespace Dead
             SceneManager.LoadScene("Gameplay1");
             _enableCanvas.IsActiveCanvas = false;
             _darkening.Darkening = 0f;
-
         }
     }
 }

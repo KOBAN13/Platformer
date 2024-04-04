@@ -13,7 +13,6 @@ namespace InputSystem
         private ICurrentStrategy _mediatorCameraSwitcher;
         private int _idCams = 1;
         private const int CornerCamerasCount = 4;
-        private const int FirstCornerCameras = 1;
 
         private Subject<Unit> _leftClickSubject = new();
         private Subject<Unit> _rightClickSubject = new();
@@ -31,11 +30,11 @@ namespace InputSystem
             _inputSystem.ChangeCamera.RightCameras.performed += _ => _rightClickSubject.OnNext(Unit.Default);
 
             _leftClickSubject
-                .ThrottleFirst(TimeSpan.FromSeconds(2))
+                .ThrottleFirst(TimeSpan.FromSeconds(1))
                 .Subscribe(_ => SwitchLeft());
             
             _rightClickSubject
-                .ThrottleFirst(TimeSpan.FromSeconds(2))
+                .ThrottleFirst(TimeSpan.FromSeconds(1))
                 .Subscribe(_ => SwitchRight());
         }
         

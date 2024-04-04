@@ -1,10 +1,8 @@
 using System;
 using System.Text.RegularExpressions;
 using Collider;
-using TMPro;
 using Ui.Interfase;
 using UniRx;
-using UnityEngine;
 
 namespace Ui
 {
@@ -18,7 +16,7 @@ namespace Ui
         private string _textOnStartGame;
         private string _textSkipGame;
         private string _textTraining;
-        private bool _isClearView;
+        private Action _isClearView;
         private bool _isPause;
         
         private const string TimeFormatPattern = @"^([0-1]?[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$";
@@ -28,9 +26,9 @@ namespace Ui
         public readonly ReactiveProperty<bool> EnableCanvas = new();
         public readonly ReactiveProperty<float> DarkeningScreen = new();
         public readonly ReactiveProperty<float> PopupText = new();
-        public readonly ReactiveProperty<string> TextDisplayOnScreen = new();
+        public readonly ReactiveCommand<string> TextDisplayOnScreen = new();
         public readonly ReactiveProperty<string> TextSkipGame = new();
-        public readonly ReactiveCommand<bool> ClearSubscribeView = new();
+        public readonly ReactiveCommand<Action> ClearSubscribeView = new();
         public readonly ReactiveProperty<string> TextTraining = new();
         public readonly ReactiveCommand<bool> IsPause = new();
 
@@ -54,7 +52,7 @@ namespace Ui
             }
         }
         
-        public bool ClearSubscribe
+        public Action ClearSubscribe
         {
             get => _isClearView;
             set
@@ -92,7 +90,7 @@ namespace Ui
             set
             {
                 _textOnStartGame = value ?? throw new ArgumentNullException();
-                TextDisplayOnScreen.Value = _textOnStartGame;
+                TextDisplayOnScreen.Execute(_textOnStartGame);
             }
         }
         

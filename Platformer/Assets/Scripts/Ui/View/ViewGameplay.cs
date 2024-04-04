@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using LogerEventCount;
 using TMPro;
@@ -33,34 +34,28 @@ public class ViewGameplay : Menu
     [Inject]
     public void Construct(ViewModel viewModel)
     { 
-        _viewModel = viewModel;
+        ViewModel = viewModel;
         StartLogEventCount();
-    }
-    
-    public void OnEnable()
-    {
         Subscribe();
     }
 
     public void OnDisable()
     {
-        _viewModel.Dispose();
         _compositeDisposable.Clear();
+        _disposableTextAfterCoroutine.Clear();
     }
 
     private void Subscribe()
     {
-        _viewModel.Subscribe();
-
-        _viewModel.Currency
+        ViewModel.Currency
             .Subscribe(currency => Currency.text = $"Сurrency: {currency}")
             .AddTo(_compositeDisposable);
         
-        _viewModel.Timer
+        ViewModel.Timer
             .Subscribe(time => Time.text = time)
             .AddTo(_compositeDisposable);
         
-        _viewModel.EnableCanvas
+        ViewModel.EnableCanvas
             .Subscribe(isActive =>
             {
                 DiePlayer.enabled = isActive;
@@ -68,7 +63,7 @@ public class ViewGameplay : Menu
             })
             .AddTo(_compositeDisposable);
         
-        _viewModel.DarkeningScreen
+        ViewModel.DarkeningScreen
             .Subscribe(alpha =>
             {
                 var darkeningScreenColor = DarkeningScreen.color;
@@ -77,7 +72,7 @@ public class ViewGameplay : Menu
             })
             .AddTo(_compositeDisposable);
         
-        _viewModel.DarkeningScreen
+        ViewModel.DarkeningScreen
             .Subscribe(alpha =>
             {
                 var darkeningScreenColor = DarkeningScreenGameplay.color;
@@ -86,7 +81,7 @@ public class ViewGameplay : Menu
             })
             .AddTo(_compositeDisposable);
 
-        _viewModel.PopupText
+        ViewModel.PopupText
             .Subscribe(alpha =>
             {
                 var popupTextColor = PopupText.color;
@@ -95,28 +90,27 @@ public class ViewGameplay : Menu
             })
             .AddTo(_compositeDisposable);
 
-        _viewModel.TextDisplayOnScreen.Subscribe(text =>
+        ViewModel.TextDisplayOnScreen.Subscribe(text =>
         {
             AnimateTextFade(text, TextDisplayOnScreen, 5f, HideTextHistory(TextDisplayOnScreen, 5f));
         })
             .AddTo(_disposableTextAfterCoroutine);
 
-        _viewModel.TextSkipStartGame.Subscribe(text =>
+        ViewModel.TextSkipStartGame.Subscribe(text =>
         {
             AnimateTextFade(text, TextSkipStart, 7f, HideTextHistory(TextSkipStart, 7f));
         })
             .AddTo(_disposableTextAfterCoroutine);
 
-        _viewModel.TextTraining
+        ViewModel.TextTraining
             .Subscribe(text =>
-                AnimateTextFade(text, TextTraining, 15f, HideTextHistory(TextTraining, 15f)))
+                AnimateTextFade(text, TextTraining, 4.5f, HideTextHistory(TextTraining, 4.5f)))
             .AddTo(_compositeDisposable);
 
-        _viewModel.ClearSubscribe
-            .Subscribe(_ =>
+        ViewModel.ClearSubscribe
+            .Subscribe(cancel =>
             {
-                Debug.Log("Отчистил?");
-                _disposableTextAfterCoroutine.Clear();
+                cancel();
                 _tweenForSkip.Kill();
                 _tweenSkipText.Kill();
                 TextSkipStart.text = "";
@@ -124,7 +118,7 @@ public class ViewGameplay : Menu
             })
             .AddTo(_compositeDisposable);
 
-        _viewModel
+        ViewModel
             .IsPause
             .Subscribe(CanvasLock)
             .AddTo(_compositeDisposable);
@@ -132,7 +126,9 @@ public class ViewGameplay : Menu
     
     public void AddListenerButtonLoadMainScene()
     {
-        MainMenu.onClick.AddListener(() => _viewModel.LoadSceneInPause.Execute(0));
+        UnityEngine.Time.timeScale = 1;
+        //await AnimationButton(MainMenu, () => MainMenu.onClick.AddListener(() => ViewModel.OnLoadScene(0).Forget()));
+        ViewModel.OnLoadScene(0).Forget();
     }
 
     private Action HideTextHistory(TextMeshProUGUI text, float fadeDuration)

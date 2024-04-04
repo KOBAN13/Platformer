@@ -1,10 +1,12 @@
 ﻿using Character;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace DefaultNamespace
 {
-    public class Player : MonoBehaviour, IControllable, IСhangeManagement
+    public class Player : MonoBehaviour, IControllable, IСhangeManagement, ITransformable
     {
+        [field: SerializeField] public Transform Transform { get; private set; }
         private IMovable _move;
         private IJumpable _jumpable;
 

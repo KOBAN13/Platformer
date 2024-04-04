@@ -27,7 +27,6 @@ namespace Ui
         public void InstantlyDarken() => _darkeningScreen.Darkening = 1f;
         public void InstantlyIlluminate() => _darkeningScreen.Darkening = 0f;
         
-
         private IEnumerator StartDarkening(float darkeningSpeedScreen)
         {
             while (_darkeningScreen.Darkening < 1f)

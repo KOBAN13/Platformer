@@ -38,8 +38,8 @@ MonoBehaviour:
   - m_From: CM  Lower left corner 45
     m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 1
-      m_Time: 2
+      m_Style: 2
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -49,8 +49,8 @@ MonoBehaviour:
   - m_From: CM Upper left corner 45
     m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 1
-      m_Time: 2
+      m_Style: 2
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -60,8 +60,8 @@ MonoBehaviour:
   - m_From: CM Upper right corner 45
     m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 1
-      m_Time: 2
+      m_Style: 2
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -71,8 +71,8 @@ MonoBehaviour:
   - m_From: CM Lower right corner 45
     m_To: '**ANY CAMERA**'
     m_Blend:
-      m_Style: 1
-      m_Time: 2
+      m_Style: 2
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []

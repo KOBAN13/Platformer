@@ -1,4 +1,6 @@
 ﻿using Ui;
+using Ui.View;
+using UnityEngine;
 using Zenject;
 
 namespace Installers
@@ -12,8 +14,8 @@ namespace Installers
 
         private void BindModel()
         {
-            Container.BindInterfacesAndSelfTo<Model>().AsSingle().Lazy();
-            Container.BindInterfacesAndSelfTo<ViewModel>().AsSingle().Lazy();
+            Container.BindInterfacesAndSelfTo<Model>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ViewModel>().AsSingle().NonLazy();
         }
     }
 }

@@ -6,7 +6,7 @@ using Zenject;
 
 namespace CameraSettings
 {
-    public class CornerCameraSwitcher : ICameraSwitchStrategy, ICamerasCorner
+    public class  CornerCameraSwitcher : ICameraSwitchStrategy, ICamerasCorner
     {
         private InputSwitcher _inputSwitcher;
         private CameraSwitcher _cameraSwitcher;
